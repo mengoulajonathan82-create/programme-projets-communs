@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS2 - ISTC | Projet 03 : Supervision</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="icon" type="image/x-icon" href="../images/logos/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <!-- Même header que précédemment -->
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logos/rs2-logo.png" alt="Logo RS2" onerror="this.style.display='none'">
+                    <span>RS2<span class="highlight">-ISTC</span></span>
+                </a>
+            </div>
+            <button class="menu-toggle" aria-label="Menu">☰</button>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Accueil</a></li>
+                <li class="dropdown">
+                    <a href="index.html" class="active">Projets <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="projet-01-infra.html">01 - Infrastructure</a></li>
+                        <li><a href="projet-02-virt.html">02 - Virtualisation</a></li>
+                        <li><a href="projet-03-supervision.html">03 - Supervision</a></li>
+                        <li><a href="projet-04-securisation.html">04 - Sécurisation</a></li>
+                        <li><a href="projet-05-pentesting.html">05 - Pentesting</a></li>
+                        <li><a href="projet-06-logs.html">06 - Logs</a></li>
+                        <li><a href="projet-07-hardening.html">07 - Hardening</a></li>
+                        <li><a href="projet-08-iam.html">08 - IAM</a></li>
+                        <li><a href="projet-09-cloud.html">09 - Cloud</a></li>
+                        <li><a href="projet-10-automatisation.html">10 - Automatisation</a></li>
+                    </ul>
+                </li>
+                <li><a href="../planning/index.html">Planning</a></li>
+                <li><a href="../comptes-rendus/index.html">CR</a></li>
+                <li><a href="../ressources/index.html">Ressources</a></li>
+                <li><a href="../equipe/index.html">Équipe</a></li>
+                <li><a href="../contact/index.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section style="background: linear-gradient(135deg, var(--dark-bg), var(--primary-dark)); color: white; padding: 3rem 5%;">
+            <div class="container">
+                <span style="color: var(--accent-cyan); font-weight: 600;">PROJET 03</span>
+                <h1>Supervision et Monitoring</h1>
+                <div style="display: flex; gap: 2rem; margin-top: 1rem;">
+                    <div><i class="fas fa-clock"></i> Durée : 3 séances</div>
+                    <div><i class="fas fa-users"></i> Équipe : 4 personnes</div>
+                    <div><i class="fas fa-calendar"></i> Réalisé : Avril 2026</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Objectifs du projet</h2>
+                <ul>
+                    <li>Installer et configurer une solution de supervision (Zabbix/Nagios)</li>
+                    <li>Configurer des alertes par email</li>
+                    <li>Créer des tableaux de bord avec Grafana</li>
+                    <li>Superviser la bande passante et la charge des serveurs</li>
+                </ul>
+
+                <h2>Installation de Zabbix</h2>
+                <div class="code-block">
+                    <pre><code># Installation du serveur Zabbix sur Ubuntu
+wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu22.04_all.deb
+dpkg -i zabbix-release_6.0-4+ubuntu22.04_all.deb
+apt update
+apt install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent
+
+# Configuration de la base de données
+mysql -uroot -p
+create database zabbix character set utf8mb4 collate utf8mb4_bin;
+create user zabbix@localhost identified by 'password';
+grant all privileges on zabbix.* to zabbix@localhost;
+quit
+
+# Importer les données
+zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql -uzabbix -p zabbix</code></pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Même footer -->
+    </footer>
+    <script src="../js/menu.js"></script>
+</body>
+</html>

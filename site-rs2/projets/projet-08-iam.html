@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>RS2 - ISTC | Projet 08 : IAM</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="icon" type="image/x-icon" href="../images/logos/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>...</header>
+    <main>
+        <section style="background: linear-gradient(135deg, var(--dark-bg), var(--primary-dark)); color: white; padding: 3rem 5%;">
+            <div class="container">
+                <span style="color: var(--accent-cyan); font-weight: 600;">PROJET 08</span>
+                <h1>Gestion des Identités (IAM)</h1>
+                <div style="display: flex; gap: 2rem;">
+                    <div><i class="fas fa-clock"></i> Durée : 2 séances</div>
+                    <div><i class="fas fa-users"></i> Équipe : 3 personnes</div>
+                    <div><i class="fas fa-calendar"></i> Réalisé : Juillet 2026</div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <h2>Objectifs</h2>
+                <ul>
+                    <li>Mettre en place OpenLDAP</li>
+                    <li>Configurer FreeIPA</li>
+                    <li>Implémenter l'authentification unique (SSO) avec Keycloak</li>
+                    <li>Mettre en place l'authentification à deux facteurs (2FA)</li>
+                </ul>
+                
+                <h2>Installation d'OpenLDAP</h2>
+                <div class="code-block">
+                    <pre><code># Installation d'OpenLDAP
+sudo apt-get update
+sudo apt-get install slapd ldap-utils -y
+sudo dpkg-reconfigure slapd
+
+# Configuration
+# Ajouter un utilisateur
+cat > add_user.ldif <<EOF
+dn: uid=jdupont,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: Jean Dupont
+sn: Dupont
+uid: jdupont
+uidNumber: 1001
+gidNumber: 1001
+homeDirectory: /home/jdupont
+loginShell: /bin/bash
+EOF
+
+ldapadd -x -D cn=admin,dc=example,dc=com -W -f add_user.ldif
+
+# Rechercher des utilisateurs
+ldapsearch -x -b dc=example,dc=com "(uid=jdupont)"</code></pre>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>...</footer>
+    <script src="../js/menu.js"></script>
+</body>
+</html>

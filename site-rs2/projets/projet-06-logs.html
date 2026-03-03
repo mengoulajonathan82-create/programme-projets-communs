@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS2 - ISTC | Projet 06 : Analyse de logs</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="icon" type="image/x-icon" href="../images/logos/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>...</header>
+    <main>
+        <section style="background: linear-gradient(135deg, var(--dark-bg), var(--primary-dark)); color: white; padding: 3rem 5%;">
+            <div class="container">
+                <span style="color: var(--accent-cyan); font-weight: 600;">PROJET 06</span>
+                <h1>Analyse de Logs et Réponse à Incident</h1>
+                <div style="display: flex; gap: 2rem;">
+                    <div><i class="fas fa-clock"></i> Durée : 2 séances</div>
+                    <div><i class="fas fa-users"></i> Équipe : 4 personnes</div>
+                    <div><i class="fas fa-calendar"></i> Réalisé : Juin 2026</div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <h2>Objectifs</h2>
+                <ul>
+                    <li>Centraliser les logs avec ELK Stack (Elasticsearch, Logstash, Kibana)</li>
+                    <li>Mettre en place Wazuh (SIEM open source)</li>
+                    <li>Simuler des attaques et analyser les traces</li>
+                    <li>Élaborer des procédures de réponse à incident</li>
+                </ul>
+                
+                <h2>Installation ELK Stack</h2>
+                <div class="code-block">
+                    <pre><code># Installation d'Elasticsearch
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+sudo apt-get install apt-transport-https
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+sudo apt-get update
+sudo apt-get install elasticsearch
+
+# Démarrer Elasticsearch
+sudo systemctl start elasticsearch
+sudo systemctl enable elasticsearch
+
+# Installation de Kibana
+sudo apt-get install kibana
+sudo systemctl start kibana
+sudo systemctl enable kibana
+
+# Installation de Logstash
+sudo apt-get install logstash</code></pre>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>...</footer>
+    <script src="../js/menu.js"></script>
+</body>
+</html>

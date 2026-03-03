@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Programme de Projets Communs - Administration Réseau & Cybersécurité - Promotion RS2 - ISTC">
+    <title>RS2 - ISTC | Programme de Projets Communs</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" type="image/x-icon" href="images/logos/favicon.ico">
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header commun -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logos/rs2-logo.png" alt="Logo RS2" onerror="this.style.display='none'">
+                    <span>RS2<span class="highlight">-ISTC</span></span>
+                </a>
+            </div>
+            <button class="menu-toggle" aria-label="Menu">☰</button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li class="dropdown">
+                    <a href="projets/index.html">Projets <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="projets/projet-01-infra.html">01 - Infrastructure</a></li>
+                        <li><a href="projets/projet-02-virt.html">02 - Virtualisation</a></li>
+                        <li><a href="projets/projet-03-supervision.html">03 - Supervision</a></li>
+                        <li><a href="projets/projet-04-securisation.html">04 - Sécurisation</a></li>
+                        <li><a href="projets/projet-05-pentesting.html">05 - Pentesting</a></li>
+                        <li><a href="projets/projet-06-logs.html">06 - Logs</a></li>
+                        <li><a href="projets/projet-07-hardening.html">07 - Hardening</a></li>
+                        <li><a href="projets/projet-08-iam.html">08 - IAM</a></li>
+                        <li><a href="projets/projet-09-cloud.html">09 - Cloud</a></li>
+                        <li><a href="projets/projet-10-automatisation.html">10 - Automatisation</a></li>
+                    </ul>
+                </li>
+                <li><a href="planning/index.html">Planning</a></li>
+                <li><a href="comptes-rendus/index.html">CR</a></li>
+                <li><a href="ressources/index.html">Ressources</a></li>
+                <li><a href="equipe/index.html">Équipe</a></li>
+                <li><a href="contact/index.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>PROGRAMME DE PROJETS COMMUNS</h1>
+            <p>Administration Réseau & Cybersécurité • Promotion RS2 - ISTC</p>
+            <a href="projets/index.html" class="btn btn-primary">Découvrir nos projets</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section>
+        <div class="container">
+            <div class="features">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Apprentissage par la pratique</h3>
+                    <p>Des projets concrets chaque samedi pour maîtriser les technologies réseau et sécurité</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <h3>Travail en équipe</h3>
+                    <p>Collaboration et partage de connaissances entre étudiants de la promotion</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3>Portfolio professionnel</h3>
+                    <p>10 projets complets à présenter à vos futurs recruteurs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets en vedette -->
+    <section style="background-color: var(--light-card);">
+        <div class="container">
+            <h2 style="text-align: center;">PROJETS PHARES</h2>
+            <div class="cards-grid">
+                <!-- Projet 1 -->
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>01 - Infrastructure réseau</h3>
+                    <p>Mise en place d'une infrastructure réseau complète avec serveurs DHCP, DNS, Web et fichiers.</p>
+                    <div class="projet-tags">
+                        <span class="tag">Cisco</span>
+                        <span class="tag">Linux</span>
+                        <span class="tag">DHCP</span>
+                    </div>
+                    <a href="projets/projet-01-infra.html" class="btn btn-secondary" style="margin-top: 1rem;">Voir le projet</a>
+                </div>
+                
+                <!-- Projet 2 -->
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-cloud"></i></div>
+                    <h3>02 - Virtualisation</h3>
+                    <p>Maîtrise des environnements virtualisés avec Proxmox, Docker et Kubernetes.</p>
+                    <div class="projet-tags">
+                        <span class="tag">Docker</span>
+                        <span class="tag">Proxmox</span>
+                        <span class="tag">K8s</span>
+                    </div>
+                    <a href="projets/projet-02-virt.html" class="btn btn-secondary" style="margin-top: 1rem;">Voir le projet</a>
+                </div>
+                
+                <!-- Projet 3 -->
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>03 - Sécurisation</h3>
+                    <p>Configuration avancée de firewall, VPN et système de détection d'intrusion (IDS/IPS).</p>
+                    <div class="projet-tags">
+                        <span class="tag">Pfsense</span>
+                        <span class="tag">VPN</span>
+                        <span class="tag">Snort</span>
+                    </div>
+                    <a href="projets/projet-04-securisation.html" class="btn btn-secondary" style="margin-top: 1rem;">Voir le projet</a>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="projets/index.html" class="btn btn-primary">Voir tous les projets</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chiffres clés -->
+    <section>
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center;">
+                <div>
+                    <h2 style="color: var(--accent-cyan); font-size: 3rem;">10</h2>
+                    <p>Projets</p>
+                </div>
+                <div>
+                    <h2 style="color: var(--accent-cyan); font-size: 3rem;">25+</h2>
+                    <p>Étudiants</p>
+                </div>
+                <div>
+                    <h2 style="color: var(--accent-cyan); font-size: 3rem;">26</h2>
+                    <p>Séances</p>
+                </div>
+                <div>
+                    <h2 style="color: var(--accent-cyan); font-size: 3rem;">130+</h2>
+                    <p>Heures de pratique</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Derniers comptes-rendus -->
+    <section style="background-color: var(--light-card);">
+        <div class="container">
+            <h2 style="text-align: center;">DERNIERS COMPTES-RENDUS</h2>
+            <ul class="cr-list">
+                <li class="cr-item">
+                    <span class="cr-date">15/03/2026</span>
+                    <span class="cr-title">Séance 1 : Installation et configuration des serveurs</span>
+                    <div class="cr-tags">
+                        <span class="tag">#réseau</span>
+                        <span class="tag">#Linux</span>
+                    </div>
+                    <a href="#" class="cr-link">Lire</a>
+                </li>
+                <li class="cr-item">
+                    <span class="cr-date">22/03/2026</span>
+                    <span class="cr-title">Séance 2 : Mise en place du serveur DHCP</span>
+                    <div class="cr-tags">
+                        <span class="tag">#DHCP</span>
+                        <span class="tag">#réseau</span>
+                    </div>
+                    <a href="#" class="cr-link">Lire</a>
+                </li>
+                <li class="cr-item">
+                    <span class="cr-date">29/03/2026</span>
+                    <span class="cr-title">Séance 3 : Configuration DNS et résolution de noms</span>
+                    <div class="cr-tags">
+                        <span class="tag">#DNS</span>
+                        <span class="tag">#Bind9</span>
+                    </div>
+                    <a href="#" class="cr-link">Lire</a>
+                </li>
+            </ul>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="comptes-rendus/index.html" class="btn btn-secondary">Voir tous les CR</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer commun -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>RS2 - ISTC</h3>
+                <p>Programme de Projets Communs<br>Administration Réseau & Cybersécurité</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="projets/index.html">Projets</a></li>
+                    <li><a href="planning/index.html">Planning</a></li>
+                    <li><a href="equipe/index.html">Équipe</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> rs2.istc@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> ISTC, [Ville]</p>
+                <div class="social-links">
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Promotion RS2 - ISTC. Tous droits réservés.</p>
+            <p>Site réalisé par les étudiants de la promotion</p>
+        </div>
+    </footer>
+
+    <script src="js/menu.js"></script>
+</body>
+</html>

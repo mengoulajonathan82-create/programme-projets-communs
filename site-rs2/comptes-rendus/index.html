@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comptes-rendus des séances RS2-ISTC">
+    <title>RS2 - ISTC | Comptes-rendus</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="icon" type="image/x-icon" href="../images/logos/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logos/rs2-logo.png" alt="Logo RS2" onerror="this.style.display='none'">
+                    <span>RS2<span class="highlight">-ISTC</span></span>
+                </a>
+            </div>
+            <button class="menu-toggle" aria-label="Menu">☰</button>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../projets/index.html">Projets</a></li>
+                <li><a href="../planning/index.html">Planning</a></li>
+                <li><a href="index.html" class="active">CR</a></li>
+                <li><a href="../ressources/index.html">Ressources</a></li>
+                <li><a href="../equipe/index.html">Équipe</a></li>
+                <li><a href="../contact/index.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section style="background: linear-gradient(135deg, var(--dark-bg), var(--primary-dark)); color: white; padding: 3rem 5%;">
+            <div class="container">
+                <h1>COMPTES-RENDUS DES SÉANCES</h1>
+                <p>Retrouvez tous les comptes-rendus de nos séances pratiques</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <!-- Barre de recherche -->
+                <div style="margin-bottom: 2rem;">
+                    <input type="text" placeholder="Rechercher un compte-rendu..." style="width: 100%; padding: 1rem; border: 1px solid var(--gray-400); border-radius: 8px;">
+                </div>
+
+                <!-- Liste des CR -->
+                <h2>2026</h2>
+                
+                <ul class="cr-list">
+                    <li class="cr-item">
+                        <span class="cr-date">29/03/2026</span>
+                        <span class="cr-title">Séance 4 : Docker Compose et orchestration</span>
+                        <div class="cr-tags">
+                            <span class="tag">#docker</span>
+                            <span class="tag">#compose</span>
+                        </div>
+                        <a href="#" class="cr-link">Lire</a>
+                    </li>
+                    
+                    <li class="cr-item">
+                        <span class="cr-date">22/03/2026</span>
+                        <span class="cr-title">Séance 3 : Introduction à Docker</span>
+                        <div class="cr-tags">
+                            <span class="tag">#docker</span>
+                            <span class="tag">#conteneurs</span>
+                        </div>
+                        <a href="#" class="cr-link">Lire</a>
+                    </li>
+                    
+                    <li class="cr-item">
+                        <span class="cr-date">15/03/2026</span>
+                        <span class="cr-title">Séance 2 : Configuration du serveur DNS (Bind9)</span>
+                        <div class="cr-tags">
+                            <span class="tag">#DNS</span>
+                            <span class="tag">#Bind9</span>
+                        </div>
+                        <a href="#" class="cr-link">Lire</a>
+                    </li>
+                    
+                    <li class="cr-item">
+                        <span class="cr-date">08/03/2026</span>
+                        <span class="cr-title">Séance 1 : Installation des serveurs et configuration DHCP</span>
+                        <div class="cr-tags">
+                            <span class="tag">#DHCP</span>
+                            <span class="tag">#ubuntu</span>
+                        </div>
+                        <a href="#" class="cr-link">Lire</a>
+                    </li>
+                </ul>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="btn btn-secondary">Charger plus de comptes-rendus</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Même footer -->
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>RS2 - ISTC</h3>
+                <p>Programme de Projets Communs<br>Administration Réseau & Cybersécurité</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="../projets/index.html">Projets</a></li>
+                    <li><a href="../planning/index.html">Planning</a></li>
+                    <li><a href="../equipe/index.html">Équipe</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> rs2.istc@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> ISTC, [Ville]</p>
+                <div class="social-links">
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Promotion RS2 - ISTC. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="../js/menu.js"></script>
+</body>
+</html>

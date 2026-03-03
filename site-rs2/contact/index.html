@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contactez la promotion RS2-ISTC">
+    <title>RS2 - ISTC | Contact</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="icon" type="image/x-icon" href="../images/logos/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logos/rs2-logo.png" alt="Logo RS2" onerror="this.style.display='none'">
+                    <span>RS2<span class="highlight">-ISTC</span></span>
+                </a>
+            </div>
+            <button class="menu-toggle" aria-label="Menu">☰</button>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../projets/index.html">Projets</a></li>
+                <li><a href="../planning/index.html">Planning</a></li>
+                <li><a href="../comptes-rendus/index.html">CR</a></li>
+                <li><a href="../ressources/index.html">Ressources</a></li>
+                <li><a href="../equipe/index.html">Équipe</a></li>
+                <li><a href="index.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section style="background: linear-gradient(135deg, var(--dark-bg), var(--primary-dark)); color: white; padding: 3rem 5%;">
+            <div class="container">
+                <h1>CONTACTEZ-NOUS</h1>
+                <p>Une question ? Un projet ? N'hésitez pas à nous écrire</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+                    <!-- Formulaire de contact -->
+                    <div>
+                        <h2>Envoyez-nous un message</h2>
+                        <form class="contact-form" action="#" method="post">
+                            <div class="form-group">
+                                <label for="nom">Nom complet</label>
+                                <input type="text" id="nom" name="nom" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="sujet">Sujet</label>
+                                <input type="text" id="sujet" name="sujet" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer</button>
+                        </form>
+                    </div>
+
+                    <!-- Informations de contact -->
+                    <div>
+                        <h2>Nos coordonnées</h2>
+                        
+                        <div style="background-color: var(--light-card); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-md);">
+                            <div style="margin-bottom: 2rem;">
+                                <h3><i class="fas fa-envelope" style="color: var(--accent-cyan);"></i> Email</h3>
+                                <p><a href="mailto:rs2.istc@gmail.com">rs2.istc@gmail.com</a></p>
+                            </div>
+                            
+                            <div style="margin-bottom: 2rem;">
+                                <h3><i class="fas fa-map-marker-alt" style="color: var(--accent-cyan);"></i> Adresse</h3>
+                                <p>ISTC (Institut Supérieur de Technologie et de Commerce)<br>
+                                [Adresse complète]<br>
+                                [Ville, Pays]</p>
+                            </div>
+                            
+                            <div style="margin-bottom: 2rem;">
+                                <h3><i class="fas fa-phone" style="color: var(--accent-cyan);"></i> Téléphone</h3>
+                                <p>+241 [numéro]</p>
+                            </div>
+                            
+                            <div>
+                                <h3><i class="fas fa-clock" style="color: var(--accent-cyan);"></i> Horaires</h3>
+                                <p>Séances pratiques : Samedi 09h00 - 16h00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Même footer -->
+    </footer>
+
+    <script src="../js/menu.js"></script>
+</body>
+</html>

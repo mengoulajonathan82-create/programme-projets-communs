@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>RS2 - ISTC | Projet 07 : Hardening</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="icon" type="image/x-icon" href="../images/logos/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>...</header>
+    <main>
+        <section style="background: linear-gradient(135deg, var(--dark-bg), var(--primary-dark)); color: white; padding: 3rem 5%;">
+            <div class="container">
+                <span style="color: var(--accent-cyan); font-weight: 600;">PROJET 07</span>
+                <h1>Hardening des Systèmes</h1>
+                <div style="display: flex; gap: 2rem;">
+                    <div><i class="fas fa-clock"></i> Durée : 2 séances</div>
+                    <div><i class="fas fa-users"></i> Équipe : 3 personnes</div>
+                    <div><i class="fas fa-calendar"></i> Réalisé : Juin 2026</div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <h2>Objectifs</h2>
+                <ul>
+                    <li>Durcir Linux (Ubuntu/CentOS) selon les recommandations CIS</li>
+                    <li>Durcir Windows Server</li>
+                    <li>Mettre en place des politiques de sécurité</li>
+                    <li>Auditer la configuration avec Lynis</li>
+                </ul>
+                
+                <h2>Hardening Linux avec Lynis</h2>
+                <div class="code-block">
+                    <pre><code># Installation de Lynis
+sudo apt-get install lynis -y
+
+# Audit de base
+sudo lynis audit system
+
+# Audit complet avec rapport
+sudo lynis audit system --report-file /tmp/lynis-report.txt
+
+# Commandes de durcissement
+# Désactiver les services inutiles
+sudo systemctl disable bluetooth
+sudo systemctl disable cups
+
+# Configurer le pare-feu
+sudo ufw enable
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+# Durcir SSH
+sudo nano /etc/ssh/sshd_config
+# Modifier:
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+
+# Mises à jour automatiques
+sudo apt-get install unattended-upgrades
+sudo dpkg-reconfigure unattended-upgrades</code></pre>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>...</footer>
+    <script src="../js/menu.js"></script>
+</body>
+</html>

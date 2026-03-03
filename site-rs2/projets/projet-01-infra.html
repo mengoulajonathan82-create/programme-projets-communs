@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projet 01 : Infrastructure réseau complète - RS2-ISTC">
+    <title>RS2 - ISTC | Projet 01 : Infrastructure réseau</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="icon" type="image/x-icon" href="../images/logos/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <!-- Même header -->
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logos/rs2-logo.png" alt="Logo RS2" onerror="this.style.display='none'">
+                    <span>RS2<span class="highlight">-ISTC</span></span>
+                </a>
+            </div>
+            <button class="menu-toggle" aria-label="Menu">☰</button>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Accueil</a></li>
+                <li class="dropdown">
+                    <a href="index.html" class="active">Projets <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="projet-01-infra.html">01 - Infrastructure</a></li>
+                        <li><a href="projet-02-virt.html">02 - Virtualisation</a></li>
+                        <li><a href="projet-03-supervision.html">03 - Supervision</a></li>
+                        <li><a href="projet-04-securisation.html">04 - Sécurisation</a></li>
+                        <li><a href="projet-05-pentesting.html">05 - Pentesting</a></li>
+                        <li><a href="projet-06-logs.html">06 - Logs</a></li>
+                        <li><a href="projet-07-hardening.html">07 - Hardening</a></li>
+                        <li><a href="projet-08-iam.html">08 - IAM</a></li>
+                        <li><a href="projet-09-cloud.html">09 - Cloud</a></li>
+                        <li><a href="projet-10-automatisation.html">10 - Automatisation</a></li>
+                    </ul>
+                </li>
+                <li><a href="../planning/index.html">Planning</a></li>
+                <li><a href="../comptes-rendus/index.html">CR</a></li>
+                <li><a href="../ressources/index.html">Ressources</a></li>
+                <li><a href="../equipe/index.html">Équipe</a></li>
+                <li><a href="../contact/index.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- En-tête du projet -->
+        <section style="background: linear-gradient(135deg, var(--dark-bg), var(--primary-dark)); color: white; padding: 3rem 5%;">
+            <div class="container">
+                <span style="color: var(--accent-cyan); font-weight: 600;">PROJET 01</span>
+                <h1>Infrastructure réseau complète</h1>
+                <div style="display: flex; gap: 2rem; margin-top: 1rem; flex-wrap: wrap;">
+                    <div><i class="fas fa-clock"></i> Durée : 4 séances</div>
+                    <div><i class="fas fa-users"></i> Équipe : 6 personnes</div>
+                    <div><i class="fas fa-calendar"></i> Réalisé : Mars 2026</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contenu principal -->
+        <section>
+            <div class="container" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+                <!-- Colonne principale -->
+                <div>
+                    <h2>Objectifs du projet</h2>
+                    <ul style="margin-left: 2rem; margin-bottom: 2rem;">
+                        <li>Créer un réseau d'entreprise complet avec services essentiels</li>
+                        <li>Configurer un serveur DHCP pour l'attribution automatique des adresses IP</li>
+                        <li>Mettre en place un serveur DNS pour la résolution de noms</li>
+                        <li>Déployer un serveur Web (Apache/Nginx) pour héberger un site</li>
+                        <li>Installer un serveur de fichiers (Samba) pour le partage</li>
+                        <li>Assurer la communication entre tous les services</li>
+                    </ul>
+
+                    <h2>Schéma de l'architecture</h2>
+                    <div style="background-color: var(--dark-card); padding: 2rem; border-radius: 12px; text-align: center; color: white; margin-bottom: 2rem;">
+                        <i class="fas fa-network-wired" style="font-size: 4rem; color: var(--accent-cyan);"></i>
+                        <p style="margin-top: 1rem;">[Schéma réseau à insérer]</p>
+                        <p style="font-size: 0.9rem;">Routeur principal → Switch → Serveurs (DHCP, DNS, Web, Fichiers) + Postes clients</p>
+                    </div>
+
+                    <h2>Étapes de réalisation</h2>
+                    <ol style="margin-left: 2rem; margin-bottom: 2rem;">
+                        <li><strong>Semaine 1 :</strong> Installation des serveurs (Ubuntu Server 22.04 LTS)</li>
+                        <li><strong>Semaine 2 :</strong> Configuration du serveur DHCP (isc-dhcp-server)</li>
+                        <li><strong>Semaine 3 :</strong> Mise en place du serveur DNS (Bind9)</li>
+                        <li><strong>Semaine 4 :</strong> Déploiement du serveur Web (Nginx) et serveur de fichiers (Samba)</li>
+                    </ol>
+
+                    <h2>Commandes importantes</h2>
+                    
+                    <h3>Configuration DHCP</h3>
+                    <div class="code-block">
+                        <pre><code># Installation du serveur DHCP
+sudo apt update
+sudo apt install isc-dhcp-server -y
+
+# Configuration du fichier /etc/dhcp/dhcpd.conf
+sudo nano /etc/dhcp/dhcpd.conf
+
+# Exemple de configuration
+subnet 192.168.1.0 netmask 255.255.255.0 {
+    range 192.168.1.100 192.168.1.200;
+    option routers 192.168.1.1;
+    option domain-name-servers 8.8.8.8, 8.8.4.4;
+    option domain-name "reseau.local";
+    default-lease-time 600;
+    max-lease-time 7200;
+}
+
+# Redémarrage du service
+sudo systemctl restart isc-dhcp-server
+sudo systemctl enable isc-dhcp-server</code></pre>
+                        <button class="btn btn-secondary" style="margin-top: 1rem;" onclick="copyCode(this)">Copier</button>
+                    </div>
+
+                    <h3>Configuration DNS (Bind9)</h3>
+                    <div class="code-block">
+                        <pre><code># Installation de Bind9
+sudo apt install bind9 -y
+
+# Configuration de la zone
+sudo nano /etc/bind/named.conf.local
+
+zone "reseau.local" {
+    type master;
+    file "/etc/bind/db.reseau.local";
+};
+
+# Création du fichier de zone
+sudo cp /etc/bind/db.local /etc/bind/db.reseau.local
+sudo nano /etc/bind/db.reseau.local
+
+$TTL    604800
+@       IN      SOA     ns.reseau.local. admin.reseau.local. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      ns.reseau.local.
+@       IN      A       192.168.1.10
+ns      IN      A       192.168.1.10
+www     IN      A       192.168.1.20
+
+# Redémarrage
+sudo systemctl restart bind9</code></pre>
+                        <button class="btn btn-secondary" style="margin-top: 1rem;" onclick="copyCode(this)">Copier</button>
+                    </div>
+
+                    <h2>Difficultés rencontrées</h2>
+                    <ul style="margin-left: 2rem; margin-bottom: 2rem;">
+                        <li><strong>Problème :</strong> Les clients n'obtenaient pas d'adresse IP du DHCP</li>
+                        <li><strong>Solution :</strong> Vérification des interfaces réseau dans /etc/default/isc-dhcp-server (ajout de INTERFACESv4="eth0")</li>
+                        <li><strong>Problème :</strong> Résolution DNS ne fonctionnait pas</li>
+                        <li><strong>Solution :</strong> Configuration des forwarders dans /etc/bind/named.conf.options</li>
+                    </ul>
+
+                    <h2>Résultats obtenus</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                        <div style="background-color: var(--light-card); padding: 1rem; border-radius: 8px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <p>DHCP fonctionnel : 15 clients connectés</p>
+                        </div>
+                        <div style="background-color: var(--light-card); padding: 1rem; border-radius: 8px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <p>DNS opérationnel : résolution interne et externe</p>
+                        </div>
+                        <div style="background-color: var(--light-card); padding: 1rem; border-radius: 8px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <p>Serveur Web : site accessible à http://www.reseau.local</p>
+                        </div>
+                        <div style="background-color: var(--light-card); padding: 1rem; border-radius: 8px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <p>Partage Samba : dossier partagé accessible</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colonne latérale -->
+                <div>
+                    <div style="background-color: var(--light-card); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-md);">
+                        <h3>Équipe projet</h3>
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 1rem;">
+                                <strong><i class="fas fa-user"></i> Alice M.</strong> - Chef de projet
+                            </li>
+                            <li style="margin-bottom: 1rem;">
+                                <strong><i class="fas fa-user"></i> Bob K.</strong> - Admin DHCP/DNS
+                            </li>
+                            <li style="margin-bottom: 1rem;">
+                                <strong><i class="fas fa-user"></i> Charlie D.</strong> - Serveur Web
+                            </li>
+                            <li style="margin-bottom: 1rem;">
+                                <strong><i class="fas fa-user"></i> Diana N.</strong> - Serveur fichiers
+                            </li>
+                            <li style="margin-bottom: 1rem;">
+                                <strong><i class="fas fa-user"></i> Eva L.</strong> - Tests et validation
+                            </li>
+                        </ul>
+
+                        <h3 style="margin-top: 2rem;">Ressources</h3>
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 1rem;">
+                                <a href="#"><i class="fas fa-file-pdf"></i> Télécharger le rapport (PDF)</a>
+                            </li>
+                            <li style="margin-bottom: 1rem;">
+                                <a href="#"><i class="fab fa-github"></i> Voir le code source</a>
+                            </li>
+                            <li style="margin-bottom: 1rem;">
+                                <a href="#"><i class="fas fa-image"></i> Captures d'écran</a>
+                            </li>
+                        </ul>
+
+                        <h3 style="margin-top: 2rem;">Technologies utilisées</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span class="tag">Ubuntu Server</span>
+                            <span class="tag">isc-dhcp-server</span>
+                            <span class="tag">Bind9</span>
+                            <span class="tag">Nginx</span>
+                            <span class="tag">Samba</span>
+                            <span class="tag">Cisco Packet Tracer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Même footer -->
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>RS2 - ISTC</h3>
+                <p>Programme de Projets Communs<br>Administration Réseau & Cybersécurité</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="../projets/index.html">Projets</a></li>
+                    <li><a href="../planning/index.html">Planning</a></li>
+                    <li><a href="../equipe/index.html">Équipe</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> rs2.istc@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> ISTC, [Ville]</p>
+                <div class="social-links">
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Promotion RS2 - ISTC. Tous droits réservés.</p>
+            <p>Site réalisé par les étudiants de la promotion</p>
+        </div>
+    </footer>
+
+    <script src="../js/menu.js"></script>
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.previousElementSibling.querySelector('code');
+            const text = codeBlock.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = 'Copié !';
+                setTimeout(() => {
+                    button.textContent = 'Copier';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

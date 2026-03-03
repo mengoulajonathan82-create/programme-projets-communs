@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>RS2 - ISTC | Projet 09 : Cloud privé</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="icon" type="image/x-icon" href="../images/logos/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>...</header>
+    <main>
+        <section style="background: linear-gradient(135deg, var(--dark-bg), var(--primary-dark)); color: white; padding: 3rem 5%;">
+            <div class="container">
+                <span style="color: var(--accent-cyan); font-weight: 600;">PROJET 09</span>
+                <h1>Cloud Privé (Nextcloud)</h1>
+                <div style="display: flex; gap: 2rem;">
+                    <div><i class="fas fa-clock"></i> Durée : 2 séances</div>
+                    <div><i class="fas fa-users"></i> Équipe : 3 personnes</div>
+                    <div><i class="fas fa-calendar"></i> Réalisé : Juillet 2026</div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <h2>Objectifs</h2>
+                <ul>
+                    <li>Installer Nextcloud (solution de cloud privé)</li>
+                    <li>Configurer le chiffrement côté serveur</li>
+                    <li>Mettre en place la synchronisation multi-appareils</li>
+                    <li>Configurer les partages sécurisés</li>
+                </ul>
+                
+                <h2>Installation de Nextcloud</h2>
+                <div class="code-block">
+                    <pre><code># Prérequis: LAMP (Linux, Apache, MySQL, PHP)
+sudo apt-get update
+sudo apt-get install apache2 mysql-server php libapache2-mod-php php-mysql php-xml php-mbstring php-zip php-gd php-curl
+
+# Télécharger Nextcloud
+cd /var/www/html
+sudo wget https://download.nextcloud.com/server/releases/latest.zip
+sudo unzip latest.zip
+sudo chown -R www-data:www-data nextcloud
+sudo chmod -R 755 nextcloud
+
+# Base de données
+sudo mysql -u root -p
+CREATE DATABASE nextcloud;
+CREATE USER 'nextcloud'@'localhost' IDENTIFIED BY 'mot_de_passe';
+GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+
+# Configurer Apache
+sudo nano /etc/apache2/sites-available/nextcloud.conf
+# Ajouter: Alias /nextcloud "/var/www/html/nextcloud/"
+
+sudo a2ensite nextcloud
+sudo systemctl reload apache2
+
+# Accéder à http://serveur/nextcloud pour finaliser l'installation</code></pre>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>...</footer>
+    <script src="../js/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>RS2 - ISTC | Projet 10 : Automatisation</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="icon" type="image/x-icon" href="../images/logos/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/logos/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/logos/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="../images/logos/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>...</header>
+    <main>
+        <section style="background: linear-gradient(135deg, var(--dark-bg), var(--primary-dark)); color: white; padding: 3rem 5%;">
+            <div class="container">
+                <span style="color: var(--accent-cyan); font-weight: 600;">PROJET 10</span>
+                <h1>Automatisation (Infrastructure as Code)</h1>
+                <div style="display: flex; gap: 2rem;">
+                    <div><i class="fas fa-clock"></i> Durée : 3 séances</div>
+                    <div><i class="fas fa-users"></i> Équipe : 4 personnes</div>
+                    <div><i class="fas fa-calendar"></i> Réalisé : Août 2026</div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <h2>Objectifs</h2>
+                <ul>
+                    <li>Automatiser avec des scripts Bash/Python</li>
+                    <li>Utiliser Ansible pour la gestion de configuration</li>
+                    <li>Découvrir Terraform pour l'infrastructure as code</li>
+                    <li>Maîtriser Git pour le versionnement</li>
+                </ul>
+                
+                <h2>Script Bash d'automatisation</h2>
+                <div class="code-block">
+                    <pre><code>#!/bin/bash
+# Script d'installation automatique LAMP
+
+# Variables
+DB_PASSWORD="securepassword"
+
+# Mise à jour du système
+echo "Mise à jour du système..."
+sudo apt-get update -y
+sudo apt-get upgrade -y
+
+# Installation Apache
+echo "Installation d'Apache..."
+sudo apt-get install apache2 -y
+sudo systemctl start apache2
+sudo systemctl enable apache2
+
+# Installation MySQL
+echo "Installation de MySQL..."
+sudo apt-get install mysql-server -y
+sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$DB_PASSWORD';"
+
+# Installation PHP
+echo "Installation de PHP..."
+sudo apt-get install php libapache2-mod-php php-mysql -y
+
+# Redémarrage Apache
+sudo systemctl restart apache2
+
+echo "Installation terminée !"</code></pre>
+                </div>
+
+                <h2>Playbook Ansible</h2>
+                <div class="code-block">
+                    <pre><code>---
+# playbook.yml
+- name: Configurer les serveurs web
+  hosts: webservers
+  become: yes
+  
+  tasks:
+    - name: Installer Apache
+      apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Démarrer Apache
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: Copier index.html
+      copy:
+        src: files/index.html
+        dest: /var/www/html/index.html
+
+- name: Configurer les bases de données
+  hosts: dbservers
+  become: yes
+  
+  tasks:
+    - name: Installer MySQL
+      apt:
+        name: mysql-server
+        state: present</code></pre>
+                </div>
+
+                <h2>Configuration Terraform</h2>
+                <div class="code-block">
+                    <pre><code># main.tf
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_instance" "web" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+  
+  tags = {
+    Name = "ServeurWeb"
+  }
+}
+
+resource "aws_security_group" "web_sg" {
+  name = "web_sg"
+  
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}</code></pre>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>...</footer>
+    <script src="../js/menu.js"></script>
+</body>
+</html>

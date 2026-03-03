@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projet 04 : Sécurisation (Firewall & IDS/IPS) - RS2-ISTC">
+    <title>RS2 - ISTC | Projet 04 : Sécurisation</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="icon" type="image/x-icon" href="../images/logos/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logos/rs2-logo.png" alt="Logo RS2" onerror="this.style.display='none'">
+                    <span>RS2<span class="highlight">-ISTC</span></span>
+                </a>
+            </div>
+            <button class="menu-toggle" aria-label="Menu">☰</button>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Accueil</a></li>
+                <li class="dropdown">
+                    <a href="index.html" class="active">Projets <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="projet-01-infra.html">01 - Infrastructure</a></li>
+                        <li><a href="projet-02-virt.html">02 - Virtualisation</a></li>
+                        <li><a href="projet-03-supervision.html">03 - Supervision</a></li>
+                        <li><a href="projet-04-securisation.html">04 - Sécurisation</a></li>
+                        <li><a href="projet-05-pentesting.html">05 - Pentesting</a></li>
+                        <li><a href="projet-06-logs.html">06 - Logs</a></li>
+                        <li><a href="projet-07-hardening.html">07 - Hardening</a></li>
+                        <li><a href="projet-08-iam.html">08 - IAM</a></li>
+                        <li><a href="projet-09-cloud.html">09 - Cloud</a></li>
+                        <li><a href="projet-10-automatisation.html">10 - Automatisation</a></li>
+                    </ul>
+                </li>
+                <li><a href="../planning/index.html">Planning</a></li>
+                <li><a href="../comptes-rendus/index.html">CR</a></li>
+                <li><a href="../ressources/index.html">Ressources</a></li>
+                <li><a href="../equipe/index.html">Équipe</a></li>
+                <li><a href="../contact/index.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section style="background: linear-gradient(135deg, var(--dark-bg), var(--primary-dark)); color: white; padding: 3rem 5%;">
+            <div class="container">
+                <span style="color: var(--accent-cyan); font-weight: 600;">PROJET 04</span>
+                <h1>Sécurisation : Firewall & IDS/IPS</h1>
+                <div style="display: flex; gap: 2rem; margin-top: 1rem; flex-wrap: wrap;">
+                    <div><i class="fas fa-clock"></i> Durée : 3 séances</div>
+                    <div><i class="fas fa-users"></i> Équipe : 5 personnes</div>
+                    <div><i class="fas fa-calendar"></i> Réalisé : Mai 2026</div>
+                    <div><i class="fas fa-shield-alt"></i> Niveau : Intermédiaire</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+                <!-- Colonne principale -->
+                <div>
+                    <h2>Objectifs du projet</h2>
+                    <ul style="margin-left: 2rem; margin-bottom: 2rem;">
+                        <li>Configurer un firewall avancé (Pfsense/OPNsense) pour protéger le réseau</li>
+                        <li>Mettre en place des règles de filtrage et du NAT</li>
+                        <li>Installer et configurer un VPN (WireGuard/OpenVPN) pour accès distant sécurisé</li>
+                        <li>Déployer un système de détection d'intrusion (Snort/Suricata)</li>
+                        <li>Analyser les logs de sécurité et configurer des alertes</li>
+                    </ul>
+
+                    <h2>Architecture réseau sécurisée</h2>
+                    <div style="background-color: var(--dark-card); padding: 2rem; border-radius: 12px; text-align: center; color: white; margin-bottom: 2rem;">
+                        <i class="fas fa-shield-virus" style="font-size: 4rem; color: var(--accent-cyan);"></i>
+                        <p style="margin-top: 1rem;">[Schéma d'architecture sécurisée]</p>
+                        <p>Internet → Pfsense (Firewall) → IDS/IPS (Snort) → Réseau interne (LAN) → Serveurs</p>
+                    </div>
+
+                    <h2>Configuration de Pfsense</h2>
+                    <div class="code-block">
+                        <pre><code># Installation de Pfsense
+# Télécharger l'ISO depuis pfsense.org
+# Installer sur une machine dédiée ou une VM
+
+# Configuration de base via l'interface web (https://IP:443)
+# Utilisateur: admin
+# Mot de passe: pfsense
+
+# Règles de firewall de base
+# Interface WAN: bloquer tout par défaut
+# Interface LAN: autoriser tout
+
+# Configuration NAT (Network Address Translation)
+# Permet aux machines internes d'accéder à Internet</code></pre>
+                        <button class="btn btn-secondary" style="margin-top: 1rem;" onclick="copyCode(this)">Copier</button>
+                    </div>
+
+                    <h2>Configuration des règles de filtrage avancées</h2>
+                    <div class="code-block">
+                        <pre><code># Règles de filtrage depuis l'interface web
+
+# Exemple: Bloquer tout trafic entrant sauf SSH
+# Aller sur: Firewall > Rules > WAN
+# Ajouter une règle:
+# - Action: Pass
+# - Protocol: TCP
+# - Source: any
+# - Port destination: 22 (SSH)
+# - Description: "Autoriser SSH"
+
+# Bloquer le reste par défaut (règle implicite à la fin)</code></pre>
+                        <button class="btn btn-secondary" style="margin-top: 1rem;" onclick="copyCode(this)">Copier</button>
+                    </div>
+
+                    <h2>Mise en place d'un VPN WireGuard</h2>
+                    <div class="code-block">
+                        <pre><code># Installation de WireGuard sur Pfsense
+# Via Package Manager: System > Package Manager > Available Packages
+# Rechercher "wireguard" et installer
+
+# Configuration
+# VPN > WireGuard > Tunnels
+# Créer un nouveau tunnel:
+# - Interface: WG1
+# - Private Key: (générée automatiquement)
+# - Listen Port: 51820
+
+# Configuration client (téléphone/PC)
+# Installer WireGuard client
+# Ajouter la configuration fournie par Pfsense</code></pre>
+                        <button class="btn btn-secondary" style="margin-top: 1rem;" onclick="copyCode(this)">Copier</button>
+                    </div>
+
+                    <h2>Installation de Snort (IDS/IPS)</h2>
+                    <div class="code-block">
+                        <pre><code># Installation de Snort sur Ubuntu
+sudo apt update
+sudo apt install snort -y
+
+# Configuration de Snort
+sudo nano /etc/snort/snort.conf
+
+# Définir le réseau à surveiller
+ipvar HOME_NET 192.168.1.0/24
+
+# Télécharger les règles (nécessite compte oinkmaster)
+# Ou utiliser des règles communautaires
+
+# Démarrer Snort
+sudo snort -A console -q -u snort -g snort -c /etc/snort/snort.conf -i eth0
+
+# Mode IPS (inline) nécessite une configuration plus avancée</code></pre>
+                        <button class="btn btn-secondary" style="margin-top: 1rem;" onclick="copyCode(this)">Copier</button>
+                    </div>
+
+                    <h2>Difficultés rencontrées</h2>
+                    <ul style="margin-left: 2rem; margin-bottom: 2rem;">
+                        <li><strong>Problème :</strong> Règles de firewall trop restrictives bloquant le trafic légitime</li>
+                        <li><strong>Solution :</strong> Mise en place d'une stratégie progressive et tests approfondis</li>
+                        <li><strong>Problème :</strong> Configuration VPN complexe avec certificats</li>
+                        <li><strong>Solution :</strong> Utilisation de WireGuard (plus simple que OpenVPN)</li>
+                    </ul>
+
+                    <h2>Résultats obtenus</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                        <div style="background-color: var(--light-card); padding: 1rem; border-radius: 8px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <p>Firewall configuré avec règles de filtrage avancées</p>
+                        </div>
+                        <div style="background-color: var(--light-card); padding: 1rem; border-radius: 8px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <p>VPN WireGuard fonctionnel (3 clients connectés)</p>
+                        </div>
+                        <div style="background-color: var(--light-card); padding: 1rem; border-radius: 8px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <p>Snort détecte les tentatives d'intrusion</p>
+                        </div>
+                        <div style="background-color: var(--light-card); padding: 1rem; border-radius: 8px;">
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <p>Alertes configurées par email</p>
+                        </div>
+                    </div>
+
+                    <h2>Captures d'écran</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div style="background-color: var(--dark-card); padding: 1rem; border-radius: 8px; text-align: center;">
+                            <i class="fas fa-image" style="font-size: 3rem; color: var(--gray-400);"></i>
+                            <p>Interface Pfsense</p>
+                        </div>
+                        <div style="background-color: var(--dark-card); padding: 1rem; border-radius: 8px; text-align: center;">
+                            <i class="fas fa-image" style="font-size: 3rem; color: var(--gray-400);"></i>
+                            <p>Règles de filtrage</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colonne latérale -->
+                <div>
+                    <div style="background-color: var(--light-card); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-md);">
+                        <h3>Équipe projet</h3>
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 1rem;"><strong><i class="fas fa-user"></i> Sophie M.</strong> - Chef de projet</li>
+                            <li style="margin-bottom: 1rem;"><strong><i class="fas fa-user"></i> Paul B.</strong> - Firewall Pfsense</li>
+                            <li style="margin-bottom: 1rem;"><strong><i class="fas fa-user"></i> Alice M.</strong> - VPN</li>
+                            <li style="margin-bottom: 1rem;"><strong><i class="fas fa-user"></i> Thomas L.</strong> - Snort/IDS</li>
+                            <li style="margin-bottom: 1rem;"><strong><i class="fas fa-user"></i> Marie K.</strong> - Tests et validation</li>
+                        </ul>
+
+                        <h3 style="margin-top: 2rem;">Ressources</h3>
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 1rem;"><a href="#"><i class="fas fa-file-pdf"></i> Rapport complet (PDF)</a></li>
+                            <li style="margin-bottom: 1rem;"><a href="#"><i class="fab fa-github"></i> Fichiers de configuration</a></li>
+                            <li style="margin-bottom: 1rem;"><a href="#"><i class="fas fa-video"></i> Démonstration vidéo</a></li>
+                        </ul>
+
+                        <h3 style="margin-top: 2rem;">Technologies utilisées</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span class="tag">Pfsense</span>
+                            <span class="tag">WireGuard</span>
+                            <span class="tag">OpenVPN</span>
+                            <span class="tag">Snort</span>
+                            <span class="tag">Suricata</span>
+                            <span class="tag">IPTables</span>
+                            <span class="tag">NAT</span>
+                        </div>
+
+                        <h3 style="margin-top: 2rem;">Mots-clés</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span class="tag">#firewall</span>
+                            <span class="tag">#vpn</span>
+                            <span class="tag">#ids</span>
+                            <span class="tag">#ips</span>
+                            <span class="tag">#sécurité</span>
+                        </div>
+
+                        <div style="margin-top: 2rem; text-align: center;">
+                            <a href="projet-05-pentesting.html" class="btn btn-primary">Projet suivant →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>RS2 - ISTC</h3>
+                <p>Programme de Projets Communs<br>Administration Réseau & Cybersécurité</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="../projets/index.html">Projets</a></li>
+                    <li><a href="../planning/index.html">Planning</a></li>
+                    <li><a href="../equipe/index.html">Équipe</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> rs2.istc@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> ISTC, Libreville</p>
+                <div class="social-links">
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Promotion RS2 - ISTC. Tous droits réservés.</p>
+            <p>Site réalisé par les étudiants de la promotion</p>
+        </div>
+    </footer>
+
+    <script src="../js/menu.js"></script>
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.previousElementSibling.querySelector('code');
+            const text = codeBlock.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = 'Copié !';
+                setTimeout(() => {
+                    button.textContent = 'Copier';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

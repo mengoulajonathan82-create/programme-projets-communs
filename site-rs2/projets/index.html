@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Liste des 10 projets du programme RS2-ISTC">
+    <title>RS2 - ISTC | Tous les projets</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="icon" type="image/x-icon" href="../images/logos/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <!-- Même header que l'accueil, adapter les chemins -->
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logos/rs2-logo.png" alt="Logo RS2" onerror="this.style.display='none'">
+                    <span>RS2<span class="highlight">-ISTC</span></span>
+                </a>
+            </div>
+            <button class="menu-toggle" aria-label="Menu">☰</button>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Accueil</a></li>
+                <li class="dropdown">
+                    <a href="index.html" class="active">Projets <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="projet-01-infra.html">01 - Infrastructure</a></li>
+                        <li><a href="projet-02-virt.html">02 - Virtualisation</a></li>
+                        <li><a href="projet-03-supervision.html">03 - Supervision</a></li>
+                        <li><a href="projet-04-securisation.html">04 - Sécurisation</a></li>
+                        <li><a href="projet-05-pentesting.html">05 - Pentesting</a></li>
+                        <li><a href="projet-06-logs.html">06 - Logs</a></li>
+                        <li><a href="projet-07-hardening.html">07 - Hardening</a></li>
+                        <li><a href="projet-08-iam.html">08 - IAM</a></li>
+                        <li><a href="projet-09-cloud.html">09 - Cloud</a></li>
+                        <li><a href="projet-10-automatisation.html">10 - Automatisation</a></li>
+                    </ul>
+                </li>
+                <li><a href="../planning/index.html">Planning</a></li>
+                <li><a href="../comptes-rendus/index.html">CR</a></li>
+                <li><a href="../ressources/index.html">Ressources</a></li>
+                <li><a href="../equipe/index.html">Équipe</a></li>
+                <li><a href="../contact/index.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Bandeau titre -->
+        <section style="background: linear-gradient(135deg, var(--dark-bg), var(--primary-dark)); color: white; padding: 3rem 5%;">
+            <div class="container">
+                <h1>NOS 10 PROJETS</h1>
+                <p>Découvrez l'ensemble des projets réalisés par la promotion RS2</p>
+            </div>
+        </section>
+
+        <!-- Filtres (optionnel) -->
+        <section style="padding: 2rem 5%;">
+            <div class="container">
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                    <span class="tag" style="background: var(--primary-dark); cursor: pointer;">Tous</span>
+                    <span class="tag" style="cursor: pointer;">Réseau</span>
+                    <span class="tag" style="cursor: pointer;">Sécurité</span>
+                    <span class="tag" style="cursor: pointer;">Cloud</span>
+                    <span class="tag" style="cursor: pointer;">Automatisation</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grille des projets -->
+        <section>
+            <div class="container">
+                <div class="projets-grid">
+                    <!-- Projet 01 -->
+                    <div class="projet-card">
+                        <div class="projet-header">
+                            <span class="projet-number">PROJET 01</span>
+                            <h3>Infrastructure réseau complète</h3>
+                        </div>
+                        <div class="projet-body">
+                            <p>Mise en place d'une infrastructure réseau d'entreprise avec services essentiels : DHCP, DNS, Web, fichiers.</p>
+                            <div class="projet-tags">
+                                <span class="tag">Réseau</span>
+                                <span class="tag">Cisco</span>
+                                <span class="tag">Linux</span>
+                            </div>
+                            <a href="projet-01-infra.html" class="btn btn-primary" style="width: 100%;">Voir le détail</a>
+                        </div>
+                    </div>
+
+                    <!-- Projet 02 -->
+                    <div class="projet-card">
+                        <div class="projet-header">
+                            <span class="projet-number">PROJET 02</span>
+                            <h3>Virtualisation et conteneurisation</h3>
+                        </div>
+                        <div class="projet-body">
+                            <p>Maîtrise des environnements virtualisés avec Proxmox, Docker et orchestration Kubernetes.</p>
+                            <div class="projet-tags">
+                                <span class="tag">Cloud</span>
+                                <span class="tag">Docker</span>
+                                <span class="tag">K8s</span>
+                            </div>
+                            <a href="projet-02-virt.html" class="btn btn-primary" style="width: 100%;">Voir le détail</a>
+                        </div>
+                    </div>
+
+                    <!-- Projet 03 -->
+                    <div class="projet-card">
+                        <div class="projet-header">
+                            <span class="projet-number">PROJET 03</span>
+                            <h3>Supervision et monitoring</h3>
+                        </div>
+                        <div class="projet-body">
+                            <p>Installation de Nagios/Zabbix, configuration des alertes, tableaux de bord Grafana.</p>
+                            <div class="projet-tags">
+                                <span class="tag">Monitoring</span>
+                                <span class="tag">Grafana</span>
+                                <span class="tag">Zabbix</span>
+                            </div>
+                            <a href="projet-03-supervision.html" class="btn btn-primary" style="width: 100%;">Voir le détail</a>
+                        </div>
+                    </div>
+
+                    <!-- Projet 04 -->
+                    <div class="projet-card">
+                        <div class="projet-header">
+                            <span class="projet-number">PROJET 04</span>
+                            <h3>Sécurisation (Firewall & IDS/IPS)</h3>
+                        </div>
+                        <div class="projet-body">
+                            <p>Configuration avancée de Pfsense, VPN WireGuard/OpenVPN, installation de Snort/Suricata.</p>
+                            <div class="projet-tags">
+                                <span class="tag">Sécurité</span>
+                                <span class="tag">Firewall</span>
+                                <span class="tag">VPN</span>
+                            </div>
+                            <a href="projet-04-securisation.html" class="btn btn-primary" style="width: 100%;">Voir le détail</a>
+                        </div>
+                    </div>
+
+                    <!-- Projet 05 -->
+                    <div class="projet-card">
+                        <div class="projet-header">
+                            <span class="projet-number">PROJET 05</span>
+                            <h3>Tests d'intrusion (Pentesting)</h3>
+                        </div>
+                        <div class="projet-body">
+                            <p>Découverte de Kali Linux, scans Nmap, tests d'intrusion avec Metasploit, rapports d'audit.</p>
+                            <div class="projet-tags">
+                                <span class="tag">Pentest</span>
+                                <span class="tag">Kali</span>
+                                <span class="tag">Metasploit</span>
+                            </div>
+                            <a href="projet-05-pentesting.html" class="btn btn-primary" style="width: 100%;">Voir le détail</a>
+                        </div>
+                    </div>
+
+                    <!-- Projet 06 -->
+                    <div class="projet-card">
+                        <div class="projet-header">
+                            <span class="projet-number">PROJET 06</span>
+                            <h3>Analyse de logs et réponse à incident</h3>
+                        </div>
+                        <div class="projet-body">
+                            <p>Centralisation des logs avec ELK Stack, mise en place de Wazuh (SIEM), simulation d'attaques.</p>
+                            <div class="projet-tags">
+                                <span class="tag">Sécurité</span>
+                                <span class="tag">ELK</span>
+                                <span class="tag">SIEM</span>
+                            </div>
+                            <a href="projet-06-logs.html" class="btn btn-primary" style="width: 100%;">Voir le détail</a>
+                        </div>
+                    </div>
+
+                    <!-- Projet 07 -->
+                    <div class="projet-card">
+                        <div class="projet-header">
+                            <span class="projet-number">PROJET 07</span>
+                            <h3>Hardening des systèmes</h3>
+                        </div>
+                        <div class="projet-body">
+                            <p>Durcissement Linux et Windows Server, gestion des politiques de sécurité, audits avec Lynis.</p>
+                            <div class="projet-tags">
+                                <span class="tag">Sécurité</span>
+                                <span class="tag">Hardening</span>
+                                <span class="tag">Lynis</span>
+                            </div>
+                            <a href="projet-07-hardening.html" class="btn btn-primary" style="width: 100%;">Voir le détail</a>
+                        </div>
+                    </div>
+
+                    <!-- Projet 08 -->
+                    <div class="projet-card">
+                        <div class="projet-header">
+                            <span class="projet-number">PROJET 08</span>
+                            <h3>Gestion des identités (IAM)</h3>
+                        </div>
+                        <div class="projet-body">
+                            <p>Mise en place de LDAP/OpenLDAP, authentification unique avec Keycloak, 2FA.</p>
+                            <div class="projet-tags">
+                                <span class="tag">IAM</span>
+                                <span class="tag">LDAP</span>
+                                <span class="tag">Keycloak</span>
+                            </div>
+                            <a href="projet-08-iam.html" class="btn btn-primary" style="width: 100%;">Voir le détail</a>
+                        </div>
+                    </div>
+
+                    <!-- Projet 09 -->
+                    <div class="projet-card">
+                        <div class="projet-header">
+                            <span class="projet-number">PROJET 09</span>
+                            <h3>Cloud privé</h3>
+                        </div>
+                        <div class="projet-body">
+                            <p>Installation de Nextcloud, configuration du chiffrement, synchronisation multi-appareils.</p>
+                            <div class="projet-tags">
+                                <span class="tag">Cloud</span>
+                                <span class="tag">Nextcloud</span>
+                                <span class="tag">Storage</span>
+                            </div>
+                            <a href="projet-09-cloud.html" class="btn btn-primary" style="width: 100%;">Voir le détail</a>
+                        </div>
+                    </div>
+
+                    <!-- Projet 10 -->
+                    <div class="projet-card">
+                        <div class="projet-header">
+                            <span class="projet-number">PROJET 10</span>
+                            <h3>Automatisation (Infrastructure as Code)</h3>
+                        </div>
+                        <div class="projet-body">
+                            <p>Scripts Bash/Python, gestion de configuration avec Ansible, Terraform, Git.</p>
+                            <div class="projet-tags">
+                                <span class="tag">Automatisation</span>
+                                <span class="tag">Ansible</span>
+                                <span class="tag">Terraform</span>
+                            </div>
+                            <a href="projet-10-automatisation.html" class="btn btn-primary" style="width: 100%;">Voir le détail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Même footer que l'accueil -->
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>RS2 - ISTC</h3>
+                <p>Programme de Projets Communs<br>Administration Réseau & Cybersécurité</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="../projets/index.html">Projets</a></li>
+                    <li><a href="../planning/index.html">Planning</a></li>
+                    <li><a href="../equipe/index.html">Équipe</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> rs2.istc@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> ISTC, [Ville]</p>
+                <div class="social-links">
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Promotion RS2 - ISTC. Tous droits réservés.</p>
+            <p>Site réalisé par les étudiants de la promotion</p>
+        </div>
+    </footer>
+
+    <script src="../js/menu.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
