@@ -1,5 +1,4 @@
-# Créer le fichier README.md avec un éditeur (nano, vim, ou echo)
-echo "# Programme de Projets Communs - RS2 / ISTC
+#Programme de Projets Communs - RS2 / ISTC
 
 Bienvenue dans le programme de projets communs de la promotion **RS2** de l'**ISTC**.
 
