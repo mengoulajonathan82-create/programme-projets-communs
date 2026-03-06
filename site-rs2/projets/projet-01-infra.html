@@ -3,16 +3,398 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Projet 01 : Infrastructure réseau complète - RS2-ISTC">
-    <title>RS2 - ISTC | Projet 01 : Infrastructure réseau</title>
+    <meta name="description" content="Projet 01 : Infrastructure réseau complète - Conception et implémentation d'un réseau d'entreprise avec VLSM, FortiGate, Cisco et Nextcloud">
+    <title>RS2 - ISTC | Projet 01 : Infrastructure réseau INTERCONTINENTAL</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="icon" type="image/x-icon" href="../images/logos/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        /* Styles supplémentaires inspirés du guide INTERCONTINENTAL */
+        :root {
+            --fortinet-red: #c00a0a;
+            --cisco-blue: #0072b8;
+            --nextcloud-blue: #0082c9;
+            --dark-bg: #0a1a2f;
+            --primary-dark: #0a2472;
+            --accent-cyan: #2dd4bf;
+            --border-gray: #e2e8f0;
+            --text-primary: #1e293b;
+            --text-secondary: #334155;
+            --text-light: #475569;
+            --text-white: #ffffff;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--text-primary);
+        }
+
+        /* En-tête de projet style guide */
+        .project-header {
+            background: linear-gradient(135deg, #0a1a2f 0%, #162b40 100%);
+            color: white;
+            padding: 2.5rem 5%;
+            border-bottom: 4px solid var(--accent-cyan);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-header::before {
+            content: "INTERCONTINENTAL";
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
+            font-size: 4rem;
+            font-weight: 800;
+            opacity: 0.05;
+            color: white;
+            letter-spacing: 4px;
+        }
+
+        .project-badge {
+            background-color: var(--accent-cyan);
+            color: #0a1a2f;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            width: fit-content;
+            color: white;
+        }
+
+        .project-meta i {
+            color: var(--accent-cyan);
+            margin-right: 0.5rem;
+        }
+
+        /* Tables style guide */
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            border: 1px solid var(--border-gray);
+            background: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: #1e293b;
+            color: white;
+            font-weight: 600;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid var(--border-gray);
+            color: var(--text-primary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        .table-caption {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        /* Cartes d'équipement */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .equipment-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--border-gray);
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+        }
+
+        .equipment-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 12px 20px rgba(0,150,200,0.1);
+        }
+
+        .equipment-icon {
+            font-size: 2.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .equipment-name {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .equipment-spec {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* Blocs de code */
+        .code-block {
+            background: #0d1117;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border: 1px solid #2d333b;
+            overflow: hidden;
+        }
+
+        .code-header {
+            background: #161b22;
+            padding: 0.8rem 1.5rem;
+            color: #8b949e;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #2d333b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-header i {
+            color: var(--accent-cyan);
+            margin-right: 0.5rem;
+        }
+
+        .code-block pre {
+            margin: 0;
+            padding: 1.5rem;
+        }
+
+        .code-block code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .copy-btn {
+            background: #2d333b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent-cyan);
+            color: #0d1117;
+        }
+
+        /* Cartes VLAN */
+        .vlan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .vlan-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-gray);
+        }
+
+        .vlan-header {
+            padding: 1rem;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vlan-10 { background: #0a2472; }
+        .vlan-20 { background: #7c3aed; }
+        .vlan-30 { background: #059669; }
+        .vlan-40 { background: #d97706; }
+        .vlan-50 { background: #dc2626; }
+        .vlan-100 { background: #2563eb; }
+        .vlan-999 { background: #4b5563; }
+
+        .vlan-body {
+            padding: 1rem;
+        }
+
+        .vlan-body p {
+            margin: 0.3rem 0;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .vlan-body i {
+            color: var(--accent-cyan);
+            width: 20px;
+            margin-right: 5px;
+        }
+
+        /* Tabs de navigation */
+        .project-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            border-bottom: 2px solid var(--border-gray);
+            padding-bottom: 1rem;
+        }
+
+        .tab-btn {
+            background: white;
+            border: 1px solid var(--border-gray);
+            padding: 0.8rem 1.5rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            background: var(--accent-cyan);
+            color: #0a1a2f;
+            border-color: var(--accent-cyan);
+        }
+
+        .tab-btn.active {
+            background: var(--accent-cyan);
+            color: #0a1a2f;
+            border-color: var(--accent-cyan);
+            font-weight: 700;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Section dépannage */
+        .troubleshoot-card {
+            background: white;
+            border-left: 4px solid var(--accent-cyan);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .troubleshoot-symptom {
+            font-weight: 700;
+            color: #dc2626;
+            margin-bottom: 0.5rem;
+        }
+
+        .troubleshoot-solution {
+            color: #059669;
+        }
+
+        /* Liens */
+        a {
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--accent-cyan);
+            text-decoration: underline;
+        }
+
+        /* Listes */
+        ul li, ol li {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Titres */
+        h2 {
+            color: var(--primary-dark);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            color: var(--text-primary);
+            margin: 1.5rem 0 1rem;
+        }
+
+        h4 {
+            color: var(--text-secondary);
+            margin: 1rem 0 0.5rem;
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Correction pour le texte dans la colonne latérale */
+        .sidebar-text {
+            color: var(--text-primary);
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-gray);
+        }
+    </style>
 </head>
 <body>
     <header>
-        <!-- Même header -->
         <nav class="navbar">
             <div class="logo">
                 <a href="../index.html">
@@ -26,15 +408,15 @@
                 <li class="dropdown">
                     <a href="index.html" class="active">Projets <i class="fas fa-chevron-down"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="projet-01-infra.html">01 - Infrastructure</a></li>
+                        <li><a href="projet-01-infra.html" class="active">01 - Infrastructure réseau</a></li>
                         <li><a href="projet-02-virt.html">02 - Virtualisation</a></li>
                         <li><a href="projet-03-supervision.html">03 - Supervision</a></li>
                         <li><a href="projet-04-securisation.html">04 - Sécurisation</a></li>
                         <li><a href="projet-05-pentesting.html">05 - Pentesting</a></li>
-                        <li><a href="projet-06-logs.html">06 - Logs</a></li>
+                        <li><a href="projet-06-logs.html">06 - Logs & Monitoring</a></li>
                         <li><a href="projet-07-hardening.html">07 - Hardening</a></li>
                         <li><a href="projet-08-iam.html">08 - IAM</a></li>
-                        <li><a href="projet-09-cloud.html">09 - Cloud</a></li>
+                        <li><a href="projet-09-cloud.html">09 - Cloud Privé</a></li>
                         <li><a href="projet-10-automatisation.html">10 - Automatisation</a></li>
                     </ul>
                 </li>
@@ -48,184 +430,501 @@
     </header>
 
     <main>
-        <!-- En-tête du projet -->
-        <section style="background: linear-gradient(135deg, var(--dark-bg), var(--primary-dark)); color: white; padding: 3rem 5%;">
+        <!-- Hero Section style guide -->
+        <section class="project-header">
             <div class="container">
-                <span style="color: var(--accent-cyan); font-weight: 600;">PROJET 01</span>
-                <h1>Infrastructure réseau complète</h1>
-                <div style="display: flex; gap: 2rem; margin-top: 1rem; flex-wrap: wrap;">
-                    <div><i class="fas fa-clock"></i> Durée : 4 séances</div>
+                <span class="project-badge"><i class="fas fa-network-wired"></i> PROJET 01 - ARCHITECTURE RÉSEAU</span>
+                <h1 class="project-title">Campus INTERCONTINENTAL</h1>
+                <p style="font-size: 1.3rem; max-width: 700px;">Conception et implémentation d'une infrastructure réseau VLSM avec FortiGate, Cisco L3 et Nextcloud</p>
+                
+                <div class="project-meta">
+                    <div><i class="fas fa-calendar-alt"></i> Version 1.0 - Janvier 2026</div>
                     <div><i class="fas fa-users"></i> Équipe : 6 personnes</div>
-                    <div><i class="fas fa-calendar"></i> Réalisé : Mars 2026</div>
+                    <div><i class="fas fa-clock"></i> Durée : 8 semaines</div>
+                    <div><i class="fas fa-tag"></i> Réseau / Sécurité / Cloud</div>
                 </div>
             </div>
         </section>
 
-        <!-- Contenu principal -->
-        <section>
-            <div class="container" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
-                <!-- Colonne principale -->
-                <div>
-                    <h2>Objectifs du projet</h2>
-                    <ul style="margin-left: 2rem; margin-bottom: 2rem;">
-                        <li>Créer un réseau d'entreprise complet avec services essentiels</li>
-                        <li>Configurer un serveur DHCP pour l'attribution automatique des adresses IP</li>
-                        <li>Mettre en place un serveur DNS pour la résolution de noms</li>
-                        <li>Déployer un serveur Web (Apache/Nginx) pour héberger un site</li>
-                        <li>Installer un serveur de fichiers (Samba) pour le partage</li>
-                        <li>Assurer la communication entre tous les services</li>
-                    </ul>
+        <!-- Navigation par onglets -->
+        <section style="padding: 1rem 0 0 0;">
+            <div class="container">
+                <div class="project-tabs">
+                    <button class="tab-btn active" onclick="showTab('presentation')">📋 Présentation</button>
+                    <button class="tab-btn" onclick="showTab('adressage')">🔢 Plan d'adressage</button>
+                    <button class="tab-btn" onclick="showTab('configuration')">⚙️ Configuration</button>
+                    <button class="tab-btn" onclick="showTab('nextcloud')">☁️ Nextcloud</button>
+                    <button class="tab-btn" onclick="showTab('tests')">✅ Tests & Dépannage</button>
+                </div>
+            </div>
+        </section>
 
-                    <h2>Schéma de l'architecture</h2>
-                    <div style="background-color: var(--dark-card); padding: 2rem; border-radius: 12px; text-align: center; color: white; margin-bottom: 2rem;">
-                        <i class="fas fa-network-wired" style="font-size: 4rem; color: var(--accent-cyan);"></i>
-                        <p style="margin-top: 1rem;">[Schéma réseau à insérer]</p>
-                        <p style="font-size: 0.9rem;">Routeur principal → Switch → Serveurs (DHCP, DNS, Web, Fichiers) + Postes clients</p>
-                    </div>
+        <section style="padding: 2rem 0;">
+            <div class="container">
+                <!-- TAB 1 : PRÉSENTATION -->
+                <div id="presentation" class="tab-content active">
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+                        <!-- Colonne principale -->
+                        <div>
+                            <h2><i class="fas fa-bullseye" style="color: var(--accent-cyan); margin-right: 10px;"></i> Objectifs du projet</h2>
+                            <ul style="margin-left: 2rem; margin-bottom: 2rem;">
+                                <li>Déployer une infrastructure réseau hiérarchique pour le campus INTERCONTINENTAL (3 étages)</li>
+                                <li>Implémenter un plan d'adressage VLSM optimisé avec la plage 172.17.0.0/16</li>
+                                <li>Configurer un pare-feu FortiGate 7.0.3 pour la sécurisation et le routage inter-VLAN</li>
+                                <li>Mettre en place un switch Cisco niveau 3 pour la commutation et le routage</li>
+                                <li>Déployer un cloud privé Nextcloud pour le stockage étudiant</li>
+                                <li>Assurer la segmentation réseau via VLANs (Admin, Invités, Étages, Serveurs)</li>
+                            </ul>
 
-                    <h2>Étapes de réalisation</h2>
-                    <ol style="margin-left: 2rem; margin-bottom: 2rem;">
-                        <li><strong>Semaine 1 :</strong> Installation des serveurs (Ubuntu Server 22.04 LTS)</li>
-                        <li><strong>Semaine 2 :</strong> Configuration du serveur DHCP (isc-dhcp-server)</li>
-                        <li><strong>Semaine 3 :</strong> Mise en place du serveur DNS (Bind9)</li>
-                        <li><strong>Semaine 4 :</strong> Déploiement du serveur Web (Nginx) et serveur de fichiers (Samba)</li>
-                    </ol>
+                            <h2><i class="fas fa-building" style="color: var(--accent-cyan); margin-right: 10px;"></i> Architecture physique</h2>
+                            <div style="background: white; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid var(--border-gray);">
+                                <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
+                                    <div style="text-align: center;">
+                                        <i class="fas fa-store" style="font-size: 3rem; color: #0a2472;"></i>
+                                        <h3 style="color: var(--text-primary);">RDC</h3>
+                                        <p style="color: var(--text-secondary);">Accueil, Admin, Bibliothèque<br><strong>20 utilisateurs</strong></p>
+                                    </div>
+                                    <i class="fas fa-arrow-right" style="font-size: 2rem; color: var(--accent-cyan);"></i>
+                                    <div style="text-align: center;">
+                                        <i class="fas fa-school" style="font-size: 3rem; color: #059669;"></i>
+                                        <h3 style="color: var(--text-primary);">1er Étage</h3>
+                                        <p style="color: var(--text-secondary);">4 Classes + Salle info<br><strong>120 étudiants</strong></p>
+                                    </div>
+                                    <i class="fas fa-arrow-right" style="font-size: 2rem; color: var(--accent-cyan);"></i>
+                                    <div style="text-align: center;">
+                                        <i class="fas fa-flask" style="font-size: 3rem; color: #d97706;"></i>
+                                        <h3 style="color: var(--text-primary);">2ème Étage</h3>
+                                        <p style="color: var(--text-secondary);">3 Classes + 2 Labos<br><strong>120 étudiants</strong></p>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <h2>Commandes importantes</h2>
-                    
-                    <h3>Configuration DHCP</h3>
-                    <div class="code-block">
-                        <pre><code># Installation du serveur DHCP
-sudo apt update
-sudo apt install isc-dhcp-server -y
-
-# Configuration du fichier /etc/dhcp/dhcpd.conf
-sudo nano /etc/dhcp/dhcpd.conf
-
-# Exemple de configuration
-subnet 192.168.1.0 netmask 255.255.255.0 {
-    range 192.168.1.100 192.168.1.200;
-    option routers 192.168.1.1;
-    option domain-name-servers 8.8.8.8, 8.8.4.4;
-    option domain-name "reseau.local";
-    default-lease-time 600;
-    max-lease-time 7200;
-}
-
-# Redémarrage du service
-sudo systemctl restart isc-dhcp-server
-sudo systemctl enable isc-dhcp-server</code></pre>
-                        <button class="btn btn-secondary" style="margin-top: 1rem;" onclick="copyCode(this)">Copier</button>
-                    </div>
-
-                    <h3>Configuration DNS (Bind9)</h3>
-                    <div class="code-block">
-                        <pre><code># Installation de Bind9
-sudo apt install bind9 -y
-
-# Configuration de la zone
-sudo nano /etc/bind/named.conf.local
-
-zone "reseau.local" {
-    type master;
-    file "/etc/bind/db.reseau.local";
-};
-
-# Création du fichier de zone
-sudo cp /etc/bind/db.local /etc/bind/db.reseau.local
-sudo nano /etc/bind/db.reseau.local
-
-$TTL    604800
-@       IN      SOA     ns.reseau.local. admin.reseau.local. (
-                              2         ; Serial
-                         604800         ; Refresh
-                          86400         ; Retry
-                        2419200         ; Expire
-                         604800 )       ; Negative Cache TTL
-;
-@       IN      NS      ns.reseau.local.
-@       IN      A       192.168.1.10
-ns      IN      A       192.168.1.10
-www     IN      A       192.168.1.20
-
-# Redémarrage
-sudo systemctl restart bind9</code></pre>
-                        <button class="btn btn-secondary" style="margin-top: 1rem;" onclick="copyCode(this)">Copier</button>
-                    </div>
-
-                    <h2>Difficultés rencontrées</h2>
-                    <ul style="margin-left: 2rem; margin-bottom: 2rem;">
-                        <li><strong>Problème :</strong> Les clients n'obtenaient pas d'adresse IP du DHCP</li>
-                        <li><strong>Solution :</strong> Vérification des interfaces réseau dans /etc/default/isc-dhcp-server (ajout de INTERFACESv4="eth0")</li>
-                        <li><strong>Problème :</strong> Résolution DNS ne fonctionnait pas</li>
-                        <li><strong>Solution :</strong> Configuration des forwarders dans /etc/bind/named.conf.options</li>
-                    </ul>
-
-                    <h2>Résultats obtenus</h2>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
-                        <div style="background-color: var(--light-card); padding: 1rem; border-radius: 8px;">
-                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
-                            <p>DHCP fonctionnel : 15 clients connectés</p>
+                            <h2><i class="fas fa-server" style="color: var(--accent-cyan); margin-right: 10px;"></i> Équipements déployés</h2>
+                            <div class="equipment-grid">
+                                <div class="equipment-card">
+                                    <div class="equipment-icon"><i class="fas fa-shield-alt"></i></div>
+                                    <div class="equipment-name">FortiGate 100E</div>
+                                    <div class="equipment-spec">Pare-feu / Routeur / VPN</div>
+                                </div>
+                                <div class="equipment-card">
+                                    <div class="equipment-icon"><i class="fas fa-project-diagram"></i></div>
+                                    <div class="equipment-name">Cisco Catalyst 3560</div>
+                                    <div class="equipment-spec">Switch L3 - Routage inter-VLAN</div>
+                                </div>
+                                <div class="equipment-card">
+                                    <div class="equipment-icon"><i class="fas fa-wifi"></i></div>
+                                    <div class="equipment-name">Cisco Aironet</div>
+                                    <div class="equipment-spec">8 points d'accès WiFi</div>
+                                </div>
+                                <div class="equipment-card">
+                                    <div class="equipment-icon"><i class="fas fa-cloud"></i></div>
+                                    <div class="equipment-name">Dell PowerEdge R240</div>
+                                    <div class="equipment-spec">Serveur Nextcloud</div>
+                                </div>
+                            </div>
                         </div>
-                        <div style="background-color: var(--light-card); padding: 1rem; border-radius: 8px;">
-                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
-                            <p>DNS opérationnel : résolution interne et externe</p>
-                        </div>
-                        <div style="background-color: var(--light-card); padding: 1rem; border-radius: 8px;">
-                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
-                            <p>Serveur Web : site accessible à http://www.reseau.local</p>
-                        </div>
-                        <div style="background-color: var(--light-card); padding: 1rem; border-radius: 8px;">
-                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
-                            <p>Partage Samba : dossier partagé accessible</p>
+
+                        <!-- Colonne latérale -->
+                        <div>
+                            <div style="background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid var(--border-gray);">
+                                <h3 style="color: var(--text-primary);"><i class="fas fa-users-cog"></i> Équipe projet</h3>
+                                <ul style="list-style: none; margin-top: 1rem; color: var(--text-secondary);">
+                                    <li style="margin-bottom: 1rem;"><strong style="color: var(--text-primary);"><i class="fas fa-user-tie"></i> Jonathan M.</strong> - Chef de projet / FortiGate</li>
+                                    <li style="margin-bottom: 1rem;"><strong style="color: var(--text-primary);"><i class="fas fa-user"></i> Alice M.</strong> - Switch Cisco / VLANs</li>
+                                    <li style="margin-bottom: 1rem;"><strong style="color: var(--text-primary);"><i class="fas fa-user"></i> Bob K.</strong> - Plan d'adressage VLSM</li>
+                                    <li style="margin-bottom: 1rem;"><strong style="color: var(--text-primary);"><i class="fas fa-user"></i> Charlie D.</strong> - Serveur Nextcloud</li>
+                                    <li style="margin-bottom: 1rem;"><strong style="color: var(--text-primary);"><i class="fas fa-user"></i> Diana N.</strong> - Tests & validation</li>
+                                    <li style="margin-bottom: 1rem;"><strong style="color: var(--text-primary);"><i class="fas fa-user"></i> Eva L.</strong> - Documentation</li>
+                                </ul>
+
+                                <hr style="margin: 2rem 0; border-color: var(--border-gray);">
+
+                                <h3 style="color: var(--text-primary);"><i class="fas fa-download"></i> Ressources</h3>
+                                <ul style="list-style: none; color: var(--text-secondary);">
+                                    <li style="margin-bottom: 1rem;"><a href="#"><i class="fas fa-file-pdf" style="color: #dc2626;"></i> Cahier des charges (PDF)</a></li>
+                                    <li style="margin-bottom: 1rem;"><a href="#"><i class="fas fa-file-word" style="color: #2563eb;"></i> Guide de configuration</a></li>
+                                    <li style="margin-bottom: 1rem;"><a href="#"><i class="fas fa-draw-polygon"></i> Schémas réseau (Draw.io)</a></li>
+                                    <li style="margin-bottom: 1rem;"><a href="#"><i class="fas fa-code"></i> Scripts de config</a></li>
+                                </ul>
+
+                                <hr style="margin: 2rem 0; border-color: var(--border-gray);">
+
+                                <h3 style="color: var(--text-primary);"><i class="fas fa-tags"></i> Technologies</h3>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    <span class="tag" style="background: #0a2472; color: white;">FortiGate 7.0.3</span>
+                                    <span class="tag" style="background: #0072b8; color: white;">Cisco IOS</span>
+                                    <span class="tag" style="background: #e95420; color: white;">Ubuntu 22.04</span>
+                                    <span class="tag" style="background: #0082c9; color: white;">Nextcloud</span>
+                                    <span class="tag" style="background: #2dd4bf; color: #0a1a2f;">VLSM</span>
+                                    <span class="tag" style="background: #7c3aed; color: white;">VLAN 802.1Q</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Colonne latérale -->
-                <div>
-                    <div style="background-color: var(--light-card); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-md);">
-                        <h3>Équipe projet</h3>
-                        <ul style="list-style: none;">
-                            <li style="margin-bottom: 1rem;">
-                                <strong><i class="fas fa-user"></i> Alice M.</strong> - Chef de projet
-                            </li>
-                            <li style="margin-bottom: 1rem;">
-                                <strong><i class="fas fa-user"></i> Bob K.</strong> - Admin DHCP/DNS
-                            </li>
-                            <li style="margin-bottom: 1rem;">
-                                <strong><i class="fas fa-user"></i> Charlie D.</strong> - Serveur Web
-                            </li>
-                            <li style="margin-bottom: 1rem;">
-                                <strong><i class="fas fa-user"></i> Diana N.</strong> - Serveur fichiers
-                            </li>
-                            <li style="margin-bottom: 1rem;">
-                                <strong><i class="fas fa-user"></i> Eva L.</strong> - Tests et validation
-                            </li>
-                        </ul>
+                <!-- TAB 2 : PLAN D'ADRESSAGE -->
+                <div id="adressage" class="tab-content">
+                    <h2><i class="fas fa-network-wired" style="color: var(--accent-cyan);"></i> Plan d'adressage VLSM</h2>
+                    <p style="color: var(--text-secondary);">Utilisation de la plage <code style="background: #f1f5f9; padding: 0.2rem 0.4rem; border-radius: 4px;">172.17.0.0/16</code> avec découpage VLSM optimisé :</p>
 
-                        <h3 style="margin-top: 2rem;">Ressources</h3>
-                        <ul style="list-style: none;">
-                            <li style="margin-bottom: 1rem;">
-                                <a href="#"><i class="fas fa-file-pdf"></i> Télécharger le rapport (PDF)</a>
-                            </li>
-                            <li style="margin-bottom: 1rem;">
-                                <a href="#"><i class="fab fa-github"></i> Voir le code source</a>
-                            </li>
-                            <li style="margin-bottom: 1rem;">
-                                <a href="#"><i class="fas fa-image"></i> Captures d'écran</a>
-                            </li>
-                        </ul>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Réseau</th>
+                                    <th>VLAN</th>
+                                    <th>Adresse réseau</th>
+                                    <th>Masque</th>
+                                    <th>Plage IP</th>
+                                    <th>Broadcast</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Admin</td><td>10</td><td>172.17.0.0</td><td>/24</td><td>172.17.0.1 - 254</td><td>172.17.0.255</td></tr>
+                                <tr><td>Invites</td><td>20</td><td>172.17.1.0</td><td>/24</td><td>172.17.1.1 - 254</td><td>172.17.1.255</td></tr>
+                                <tr><td>RDC Études</td><td>30</td><td>172.17.2.0</td><td>/23</td><td>172.17.2.1 - 3.254</td><td>172.17.3.255</td></tr>
+                                <tr><td>1er Étage</td><td>40</td><td>172.17.4.0</td><td>/22</td><td>172.17.4.1 - 7.254</td><td>172.17.7.255</td></tr>
+                                <tr><td>2ème Étage</td><td>50</td><td>172.17.8.0</td><td>/22</td><td>172.17.8.1 - 11.254</td><td>172.17.11.255</td></tr>
+                                <tr><td>Serveurs</td><td>100</td><td>172.17.16.0</td><td>/24</td><td>172.17.16.1 - 254</td><td>172.17.16.255</td></tr>
+                                <tr><td>Management</td><td>999</td><td>172.17.255.0</td><td>/24</td><td>172.17.255.1 - 254</td><td>172.17.255.255</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="table-caption">Tableau 1 : Plan d'adressage VLSM détaillé</p>
 
-                        <h3 style="margin-top: 2rem;">Technologies utilisées</h3>
-                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                            <span class="tag">Ubuntu Server</span>
-                            <span class="tag">isc-dhcp-server</span>
-                            <span class="tag">Bind9</span>
-                            <span class="tag">Nginx</span>
-                            <span class="tag">Samba</span>
-                            <span class="tag">Cisco Packet Tracer</span>
+                    <h2 style="margin-top: 2rem;"><i class="fas fa-code-branch"></i> Configuration VLANs</h2>
+                    <div class="vlan-grid">
+                        <div class="vlan-card">
+                            <div class="vlan-header vlan-10">VLAN 10 <span>ADMIN</span></div>
+                            <div class="vlan-body">
+                                <p><i class="fas fa-ip"></i> 172.17.0.1/24</p>
+                                <p><i class="fas fa-shield"></i> Sécurité haute - 802.1X</p>
+                            </div>
                         </div>
+                        <div class="vlan-card">
+                            <div class="vlan-header vlan-20">VLAN 20 <span>INVITES</span></div>
+                            <div class="vlan-body">
+                                <p><i class="fas fa-ip"></i> 172.17.1.1/24</p>
+                                <p><i class="fas fa-shield"></i> Captive portal</p>
+                            </div>
+                        </div>
+                        <div class="vlan-card">
+                            <div class="vlan-header vlan-30">VLAN 30 <span>RDC ÉTUDES</span></div>
+                            <div class="vlan-body">
+                                <p><i class="fas fa-ip"></i> 172.17.2.1/23</p>
+                                <p><i class="fas fa-users"></i> Classes RDC</p>
+                            </div>
+                        </div>
+                        <div class="vlan-card">
+                            <div class="vlan-header vlan-40">VLAN 40 <span>ETAGE 1</span></div>
+                            <div class="vlan-body">
+                                <p><i class="fas fa-ip"></i> 172.17.4.1/22</p>
+                                <p><i class="fas fa-users"></i> 4 classes</p>
+                            </div>
+                        </div>
+                        <div class="vlan-card">
+                            <div class="vlan-header vlan-50">VLAN 50 <span>ETAGE 2</span></div>
+                            <div class="vlan-body">
+                                <p><i class="fas fa-ip"></i> 172.17.8.1/22</p>
+                                <p><i class="fas fa-flask"></i> Labos</p>
+                            </div>
+                        </div>
+                        <div class="vlan-card">
+                            <div class="vlan-header vlan-100">VLAN 100 <span>SERVEURS</span></div>
+                            <div class="vlan-body">
+                                <p><i class="fas fa-ip"></i> 172.17.16.1/24</p>
+                                <p><i class="fas fa-cloud"></i> Nextcloud</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3 : CONFIGURATION -->
+                <div id="configuration" class="tab-content">
+                    <h2><i class="fas fa-cogs" style="color: var(--accent-cyan);"></i> Configuration des équipements</h2>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                        <!-- FortiGate -->
+                        <div>
+                            <h3 style="color: var(--text-primary);"><i class="fas fa-shield-alt" style="color: #c00a0a;"></i> FortiGate 7.0.3</h3>
+                            
+                            <h4 style="color: var(--text-secondary);">Interfaces VLAN</h4>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span><i class="fas fa-terminal"></i> CLI FortiGate - Création VLANs</span>
+                                    <button class="copy-btn" onclick="copyText(this)">Copier</button>
+                                </div>
+                                <pre><code class="language-bash">config system interface
+    edit "VLAN10_ADMIN"
+        set vdom "root"
+        set interface "internal"
+        set type vlan
+        set vlanid 10
+        set ip 172.17.0.1 255.255.255.0
+        set allowaccess ping
+    next
+    edit "VLAN20_INVITES"
+        set interface "internal"
+        set type vlan
+        set vlanid 20
+        set ip 172.17.1.1 255.255.255.0
+    next
+    edit "VLAN100_SERVERS"
+        set interface "internal"
+        set type vlan
+        set vlanid 100
+        set ip 172.17.16.1 255.255.255.0
+        set allowaccess ping https ssh
+    next
+end</code></pre>
+                            </div>
+
+                            <h4 style="color: var(--text-secondary);">Règles de pare-feu</h4>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span><i class="fas fa-fire"></i> Politiques de sécurité</span>
+                                    <button class="copy-btn" onclick="copyText(this)">Copier</button>
+                                </div>
+                                <pre><code class="language-bash">config firewall policy
+    edit 1
+        set name "Classes_to_Internet"
+        set srcintf "VLAN30_RDC" "VLAN40_ETAGE1" "VLAN50_ETAGE2"
+        set dstintf "wan1"
+        set srcaddr all
+        set dstaddr all
+        set action accept
+        set service HTTP HTTPS DNS
+        set nat enable
+    next
+    edit 2
+        set name "Classes_to_Nextcloud"
+        set srcintf "VLAN30_RDC" "VLAN40_ETAGE1" "VLAN50_ETAGE2"
+        set dstintf "VLAN100_SERVERS"
+        set dstaddr "Nextcloud_Server"
+        set action accept
+        set service HTTP HTTPS
+    next
+end</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Cisco Switch -->
+                        <div>
+                            <h3 style="color: var(--text-primary);"><i class="fas fa-project-diagram" style="color: #0072b8;"></i> Cisco Catalyst L3</h3>
+                            
+                            <h4 style="color: var(--text-secondary);">Configuration VLANs</h4>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span><i class="fas fa-code"></i> Cisco IOS - VLANs</span>
+                                    <button class="copy-btn" onclick="copyText(this)">Copier</button>
+                                </div>
+                                <pre><code class="language-bash">! Création des VLANs
+vlan 10
+ name ADMIN
+vlan 20
+ name INVITES
+vlan 30
+ name RDC_ETUDES
+vlan 40
+ name ETAGE1
+vlan 50
+ name ETAGE2
+vlan 100
+ name SERVEURS
+vlan 999
+ name MANAGEMENT
+exit
+
+! Configuration trunk vers FortiGate
+interface gi0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,50,100,999
+ no shutdown
+
+! Routage inter-VLAN
+ip routing
+ip route 0.0.0.0 0.0.0.0 172.17.255.1</code></pre>
+                            </div>
+
+                            <h4 style="color: var(--text-secondary);">Configuration DHCP</h4>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span><i class="fas fa-dhcp"></i> Serveur DHCP</span>
+                                    <button class="copy-btn" onclick="copyText(this)">Copier</button>
+                                </div>
+                                <pre><code class="language-bash">ip dhcp excluded-address 172.17.0.1 172.17.0.99
+ip dhcp pool VLAN10_ADMIN
+ network 172.17.0.0 255.255.255.0
+ default-router 172.17.0.1
+ dns-server 8.8.8.8 8.8.4.4
+ domain-name intercontinental.local</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 4 : NEXTCLOUD -->
+                <div id="nextcloud" class="tab-content">
+                    <h2><i class="fas fa-cloud" style="color: #0082c9;"></i> Déploiement Nextcloud sur Ubuntu Server 22.04</h2>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fab fa-ubuntu"></i> Installation des prérequis</span>
+                            <button class="copy-btn" onclick="copyText(this)">Copier</button>
+                        </div>
+                        <pre><code class="language-bash"># Mise à jour du système
+sudo apt update && sudo apt upgrade -y
+
+# Installation LAMP
+sudo apt install -y apache2 mariadb-server libapache2-mod-php
+sudo apt install -y php-gd php-json php-mysql php-curl php-mbstring
+sudo apt install -y php-intl php-imagick php-xml php-zip php-bz2</code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fas fa-database"></i> Configuration base de données</span>
+                            <button class="copy-btn" onclick="copyText(this)">Copier</button>
+                        </div>
+                        <pre><code class="language-sql">sudo mysql -u root
+
+CREATE DATABASE nextcloud;
+CREATE USER 'nextcloud'@'localhost' IDENTIFIED BY 'MotDePasseFort123!';
+GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;</code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fas fa-download"></i> Installation Nextcloud</span>
+                            <button class="copy-btn" onclick="copyText(this)">Copier</button>
+                        </div>
+                        <pre><code class="language-bash">cd /var/www
+sudo wget https://download.nextcloud.com/server/releases/latest.zip
+sudo unzip latest.zip
+sudo chown -R www-data:www-data nextcloud
+sudo chmod -R 755 nextcloud</code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fas fa-network-wired"></i> Configuration IP statique</span>
+                            <button class="copy-btn" onclick="copyText(this)">Copier</button>
+                        </div>
+                        <pre><code class="language-yaml"># /etc/netplan/00-installer-config.yaml
+network:
+  version: 2
+  ethernets:
+    eth0:
+      addresses:
+        - 172.17.16.10/24
+      routes:
+        - to: default
+          via: 172.17.16.1
+      nameservers:
+        addresses:
+          - 8.8.8.8
+          - 8.8.4.4</code></pre>
+                    </div>
+                </div>
+
+                <!-- TAB 5 : TESTS & DÉPANNAGE -->
+                <div id="tests" class="tab-content">
+                    <h2><i class="fas fa-check-circle" style="color: var(--accent-cyan);"></i> Tests de validation</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem;">
+                        <div>
+                            <h3 style="color: var(--text-primary);">Tests de connectivité</h3>
+                            <div class="code-block">
+                                <pre><code class="language-bash"># Depuis le switch Cisco
+ping 172.17.0.1      # Gateway VLAN10
+ping 172.17.255.1    # FortiGate
+ping 8.8.8.8         # Internet
+
+# Depuis un poste client
+ipconfig /all        # Vérifier IP, masque, gateway
+ping 172.17.0.1      # Gateway
+ping 172.17.16.10    # Serveur Nextcloud
+nslookup google.com  # DNS</code></pre>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 style="color: var(--text-primary);">Vérification VLANs</h3>
+                            <div class="code-block">
+                                <pre><code class="language-bash"># Sur le switch Cisco
+show vlan brief
+show interfaces trunk
+show mac address-table</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 style="margin-top: 2rem;"><i class="fas fa-tools"></i> Guide de dépannage</h2>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr><th>Symptôme</th><th>Cause probable</th><th>Solution</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Pas d'IP attribuée</td><td>DHCP non configuré</td><td>Vérifier service DHCP actif</td></tr>
+                                <tr><td>Pas d'accès Internet</td><td>Route par défaut manquante</td><td>Vérifier ip route 0.0.0.0</td></tr>
+                                <tr><td>VLANs non routés</td><td>ip routing désactivé</td><td>Activer ip routing sur switch L3</td></tr>
+                                <tr><td>Nextcloud inaccessible</td><td>Apache non démarré</td><td>sudo systemctl restart apache2</td></tr>
+                                <tr><td>Échec authentification</td><td>Mauvais VLAN/port</td><td>Vérifier switchport access vlan</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="table-caption">Tableau 2 : Guide de dépannage rapide</p>
+
+                    <div class="troubleshoot-card">
+                        <div class="troubleshoot-symptom"><i class="fas fa-exclamation-triangle"></i> Problème : Les clients n'obtiennent pas d'IP du DHCP</div>
+                        <div class="troubleshoot-solution"><i class="fas fa-check-circle"></i> Solution : Vérifier INTERFACESv4="eth0" dans /etc/default/isc-dhcp-server</div>
+                    </div>
+
+                    <div class="troubleshoot-card">
+                        <div class="troubleshoot-symptom"><i class="fas fa-exclamation-triangle"></i> Problème : Résolution DNS ne fonctionne pas</div>
+                        <div class="troubleshoot-solution"><i class="fas fa-check-circle"></i> Solution : Configurer les forwarders dans /etc/bind/named.conf.options</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Livrables fin de projet -->
+        <section style="background: linear-gradient(145deg, #f8fafc, #ffffff); padding: 3rem 5%; border-top: 2px solid var(--border-gray);">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 2rem;"><i class="fas fa-award" style="color: var(--accent-cyan);"></i> Résultats et livrables</h2>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;">
+                    <div style="text-align: center;">
+                        <div style="background: #0a2472; color: white; width: 60px; height: 60px; border-radius: 30px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                            <i class="fas fa-check fa-2x"></i>
+                        </div>
+                        <h4 style="color: var(--text-primary);">Réseau segmenté</h4>
+                        <p style="color: var(--text-secondary);">7 VLANs opérationnels</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="background: #0a2472; color: white; width: 60px; height: 60px; border-radius: 30px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                            <i class="fas fa-wifi fa-2x"></i>
+                        </div>
+                        <h4 style="color: var(--text-primary);">Couverture WiFi</h4>
+                        <p style="color: var(--text-secondary);">8 points d'accès déployés</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="background: #0a2472; color: white; width: 60px; height: 60px; border-radius: 30px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                            <i class="fas fa-cloud-upload-alt fa-2x"></i>
+                        </div>
+                        <h4 style="color: var(--text-primary);">Cloud privé</h4>
+                        <p style="color: var(--text-secondary);">Nextcloud accessible</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="background: #0a2472; color: white; width: 60px; height: 60px; border-radius: 30px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                            <i class="fas fa-file-pdf fa-2x"></i>
+                        </div>
+                        <h4 style="color: var(--text-primary);">Documentation</h4>
+                        <p style="color: var(--text-secondary);">Guide complet remis</p>
                     </div>
                 </div>
             </div>
@@ -233,16 +932,16 @@ sudo systemctl restart bind9</code></pre>
     </main>
 
     <footer>
-        <!-- Même footer -->
         <div class="footer-content">
             <div class="footer-section">
                 <h3>RS2 - ISTC</h3>
                 <p>Programme de Projets Communs<br>Administration Réseau & Cybersécurité</p>
+                <p><small>Projet INTERCONTINENTAL - Version 1.0</small></p>
             </div>
             <div class="footer-section">
                 <h3>Liens rapides</h3>
                 <ul>
-                    <li><a href="../projets/index.html">Projets</a></li>
+                    <li><a href="../projets/index.html">Tous les projets</a></li>
                     <li><a href="../planning/index.html">Planning</a></li>
                     <li><a href="../equipe/index.html">Équipe</a></li>
                 </ul>
@@ -250,24 +949,25 @@ sudo systemctl restart bind9</code></pre>
             <div class="footer-section">
                 <h3>Contact</h3>
                 <p><i class="fas fa-envelope"></i> rs2.istc@gmail.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> ISTC, [Ville]</p>
+                <p><i class="fas fa-phone"></i> +237 677 606 398</p>
                 <div class="social-links">
                     <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Promotion RS2 - ISTC. Tous droits réservés.</p>
-            <p>Site réalisé par les étudiants de la promotion</p>
+            <p>Support technique : <a href="mailto:support@intercontinental.edu">support@intercontinental.edu</a></p>
         </div>
     </footer>
 
     <script src="../js/menu.js"></script>
     <script>
-        function copyCode(button) {
-            const codeBlock = button.previousElementSibling.querySelector('code');
+        // Fonction pour copier le code
+        function copyText(button) {
+            const codeBlock = button.closest('.code-block').querySelector('code');
             const text = codeBlock.innerText;
             navigator.clipboard.writeText(text).then(() => {
                 button.textContent = 'Copié !';
@@ -275,6 +975,22 @@ sudo systemctl restart bind9</code></pre>
                     button.textContent = 'Copier';
                 }, 2000);
             });
+        }
+
+        // Fonction pour les onglets
+        function showTab(tabId) {
+            // Cacher tous les contenus
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Désactiver tous les boutons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Afficher le tab sélectionné
+            document.getElementById(tabId).classList.add('active');
+            // Activer le bouton cliqué
+            event.target.classList.add('active');
         }
     </script>
 </body>

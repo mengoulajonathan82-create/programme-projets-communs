@@ -651,3 +651,99 @@ footer {
         transform: translateY(0);
     }
 }
+
+
+/* ===== BOUTON DE THÈME ===== */
+.theme-toggle-container {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: 2px solid var(--accent-cyan);
+    color: var(--text-light);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background-color: var(--accent-cyan);
+    color: var(--dark-bg);
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .theme-toggle-container {
+        margin: 1rem 0 0 0;
+        justify-content: center;
+    }
+}
+
+
+
+
+/* ===== MODE SOMBRE ===== */
+body.dark-mode {
+    --light-bg: #1a2634;
+    --light-card: #2a3745;
+    --text-dark: #ecf0f1;
+    --gray-600: #b0c4de;
+    background-color: #1a2634;
+    color: #ecf0f1;
+}
+
+body.dark-mode .card,
+body.dark-mode .projet-card,
+body.dark-mode .membre-card,
+body.dark-mode .form-card,
+body.dark-mode .planning-table,
+body.dark-mode .cr-item,
+body.dark-mode .contact-form {
+    background-color: #2a3745;
+    border-color: #3a4755;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4 {
+    color: #ffffff;
+}
+
+body.dark-mode p,
+body.dark-mode li,
+body.dark-mode .card p,
+body.dark-mode .projet-body p {
+    color: #b0c4de;
+}
+
+body.dark-mode a:not(.btn):not(.nav-menu a):not(.logo a) {
+    color: #5dade2;
+}
+
+body.dark-mode .tag {
+    background-color: #3B5BA5;
+    color: white;
+}
+
+body.dark-mode .planning-table td {
+    color: #b0c4de;
+    border-bottom-color: #3a4755;
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+    background-color: #1a2634;
+    color: #ecf0f1;
+    border-color: #3a4755;
+}

@@ -97,6 +97,58 @@
     }
 }
 
+/* Mode sombre - Version plus lumineuse */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Arrière-plans - plus clairs pour meilleure lisibilité */
+        --dark-bg: #1e2a3a;        /* Plus lumineux que #0F172A */
+        --light-bg: #2a3a4a;        /* Plus lumineux que #1a1a1a */
+        --light-card: #34495e;      /* Plus lumineux que #2d2d2d */
+        
+        /* Textes - bien contrastés */
+        --text-dark: #ecf0f1;        /* Texte principal (très lisible) */
+        --text-light: #ffffff;       /* Texte sur fond foncé */
+        --gray-400: #bdc3c7;         /* Texte secondaire */
+        
+        /* Couleurs principales - préservées mais plus visibles */
+        --primary-dark: #2980b9;      /* Bleu plus lumineux */
+        --primary-medium: #3498db;    /* Bleu medium */
+        --primary-light: #5dade2;      /* Bleu clair */
+        
+        /* Accents - inchangés */
+        --accent-cyan: #00E5FF;
+        --accent-purple: #9b59b6;
+    }
+    
+    /* Ajustements supplémentaires pour la lisibilité */
+    .card, .projet-card, .membre-card {
+        background-color: var(--light-card);
+        border: 1px solid #4a5a6a;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+    
+    h1, h2, h3, h4 {
+        color: #ffffff !important;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    p, li {
+        color: var(--text-dark);
+    }
+    
+    a:not(.btn) {
+        color: #5dade2;
+    }
+    
+    a:not(.btn):hover {
+        color: var(--accent-cyan);
+    }
+    
+    .tag {
+        background-color: #4a5a6a;
+        color: white;
+    }
+}
 /* === TABLETTE (641px - 1024px) === */
 @media (min-width: 641px) and (max-width: 1024px) {
     /* Typographie */

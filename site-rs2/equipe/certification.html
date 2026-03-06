@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Parcours certifications cybersécurité & réseau - Promotion RS2-ISTC. Débutez avec des certifications gratuites et reconnues.">
+    <title>RS2 - ISTC | Certifications</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="icon" type="image/x-icon" href="../images/logos/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<style>
+    /* Styles supplémentaires pour la page certifications */
+    .certif-section-title {
+        color: var(--primary-dark);
+        margin: 2.5rem 0 1.5rem 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 3px solid var(--accent-cyan);
+        display: inline-block;
+    }
+
+    .certif-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .certif-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        border: 1px solid #eef2f6;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .certif-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0,20,80,0.15);
+    }
+
+    .certif-header {
+        background: linear-gradient(135deg, #0a2472, #1e3a8a);
+        color: white;
+        padding: 1.2rem 1.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .certif-header h3 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .certif-badge {
+        background: rgba(255,255,255,0.2);
+        padding: 0.25rem 0.75rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+
+    .certif-body {
+        padding: 1.5rem 1.2rem;
+        flex-grow: 1;
+    }
+
+    .certif-meta {
+        display: flex;
+        gap: 1.2rem;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        color: #4a5568;
+        flex-wrap: wrap;
+    }
+
+    .certif-meta i {
+        color: var(--accent-cyan);
+        width: 20px;
+        margin-right: 5px;
+    }
+
+    .certif-meta span {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .certif-contenu {
+        font-size: 0.95rem;
+        color: #2d3748;
+        margin-bottom: 1.2rem;
+        line-height: 1.5;
+    }
+
+    .certif-lien {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #e6f0ff;
+        color: var(--primary-dark);
+        padding: 0.5rem 1.2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: background-color 0.2s;
+        margin-top: 0.5rem;
+        border: 1px solid transparent;
+    }
+
+    .certif-lien:hover {
+        background-color: #d4e2fc;
+        border-color: var(--primary-dark);
+    }
+
+    .priority-tag {
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 0.2rem 0.8rem;
+        border-radius: 30px;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-bottom: 1rem;
+        letter-spacing: 0.5px;
+    }
+
+    .priority-1 {
+        background: #ffedd5;
+        color: #9a3412;
+    }
+
+    .priority-2 {
+        background: #fef9c3;
+        color: #854d0e;
+    }
+
+    .priority-bonus {
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    .platform-card {
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 1rem 1.2rem;
+        border-left: 4px solid var(--accent-cyan);
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .platform-card a {
+        color: #0a2472;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .platform-card a:hover {
+        text-decoration: underline;
+    }
+
+    .strategy-box {
+        background: linear-gradient(145deg, #f0f4ff, #ffffff);
+        border-radius: 20px;
+        padding: 1.8rem;
+        margin: 2.5rem 0;
+        border: 1px dashed #0a2472;
+    }
+
+    .strategy-timeline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: space-between;
+        margin-top: 1.5rem;
+    }
+
+    .timeline-item {
+        flex: 1 1 200px;
+        background: white;
+        padding: 1rem 1.2rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        color: #1e293b;
+    }
+
+    .timeline-item .week {
+        font-weight: 700;
+        color: var(--accent-cyan);
+        font-size: 1.1rem;
+    }
+
+    .btn-cyan {
+        background: var(--accent-cyan);
+        color: white;
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-block;
+        transition: 0.2s;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-cyan:hover {
+        background: #0d9488;
+        transform: scale(1.02);
+    }
+
+    .footer-small-note {
+        font-size: 0.9rem;
+        color: #e0e7ff;
+        margin-top: 1rem;
+    }
+
+    /* Correction pour le texte sur fond clair */
+    .stats-container p {
+        color: #334155;
+        font-weight: 500;
+    }
+
+    .resource-link {
+        background: #f1f5f9;
+        padding: 1rem;
+        border-radius: 12px;
+        text-decoration: none;
+        color: #0a2472 !important;
+        font-weight: 500;
+        transition: background 0.2s;
+        display: block;
+        text-align: center;
+    }
+
+    .resource-link:hover {
+        background: #e2e8f0;
+    }
+
+    .final-message {
+        text-align: center;
+        margin-top: 3rem;
+        font-size: 1.1rem;
+        background: #ecfdf5;
+        padding: 1rem;
+        border-radius: 60px;
+        color: #065f46;
+        font-weight: 500;
+    }
+</style>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="../index.html">
+                     <img src="../logos/logos/logo principal.png" alt="Logo RS2" onerror="this.style.display='none'">
+                    
+                </a>
+            </div>
+            <button class="menu-toggle" aria-label="Menu">☰</button>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../projets/index.html">Projets</a></li>
+                <li><a href="../planning/index.html">Planning</a></li>
+                <li><a href="../comptes-rendus/index.html">CR</a></li>
+                <li><a href="../ressources/index.html">Ressources</a></li>
+                <li><a href="../equipe/index.html">Équipe</a></li>
+                <li><a href="../contact/index.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section style="background: linear-gradient(135deg, rgba(10, 36, 114, 0.95), rgba(30, 58, 138, 0.95)), 
+        url('../images/logos/Image_be0rpabe0rpabe0r.png'); background-size: cover; background-position: center; color: white; padding: 4rem 5%;">
+            <div class="container" style="text-align: center;">
+                <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">CERTIFICATIONS & BADGES</h1>
+                <p style="font-size: 1.2rem; opacity: 0.9;">Boostez votre CV avec des certifications gratuites ou à faible coût</p>
+                <p style="margin-top: 1.5rem;"><i class="fas fa-check-circle" style="color: #2dd4bf;"></i> 100% éligible pour les étudiants RS2</p>
+            </div>
+        </section>
+
+        <section style="padding: 2rem 0;">
+            <div class="container">
+
+                <!-- INTRODUCTION / STATS ENCOURAGEANTES -->
+                <div class="stats-container" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-bottom: 2rem; background: #f8fafc; padding: 2rem; border-radius: 30px;">
+                    <div style="text-align: center;">
+                        <span style="font-size: 2.5rem; font-weight: 700; color: #0a2472;">0 FCFA</span>
+                        <p style="color: #334155; font-weight: 500;">Dépensé pour débuter</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <span style="font-size: 2.5rem; font-weight: 700; color: #0a2472;">6+</span>
+                        <p style="color: #334155; font-weight: 500;">Certifications gratuites</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <span style="font-size: 2.5rem; font-weight: 700; color: #0a2472;">15+</span>
+                        <p style="color: #334155; font-weight: 500;">Badges valorisables</p>
+                    </div>
+                </div>
+
+                <!-- =============== CERTIFICATIONS 100% GRATUITES =============== -->
+                <h2 class="certif-section-title"><i class="fas fa-gift" style="margin-right: 10px; color: #2dd4bf;"></i> Certifications 100% gratuites (pas d'examen payant)</h2>
+                <div class="certif-grid">
+                    <!-- Google Cybersecurity -->
+                    <div class="certif-card">
+                        <div class="certif-header">
+                            <h3>Google Cybersecurity</h3>
+                            <span class="certif-badge">Coursera</span>
+                        </div>
+                        <div class="certif-body">
+                            <div class="certif-meta">
+                                <span><i class="far fa-clock"></i> 6 mois (10h/sem)</span>
+                                <span><i class="fas fa-tasks"></i> Python, Linux, SIEM</span>
+                            </div>
+                            <div class="certif-contenu">Programme professionnel Google. Audit gratuit (sans certification payante). Idéal pour débuter.</div>
+                            <a href="https://www.coursera.org/professional-certificates/google-cybersecurity" target="_blank" class="certif-lien"><i class="fas fa-external-link-alt"></i> Accéder au cours</a>
+                        </div>
+                    </div>
+                    <!-- IBM Cybersecurity Analyst -->
+                    <div class="certif-card">
+                        <div class="certif-header">
+                            <h3>IBM Cybersecurity Analyst</h3>
+                            <span class="certif-badge">IBM/Coursera</span>
+                        </div>
+                        <div class="certif-body">
+                            <div class="certif-meta">
+                                <span><i class="far fa-clock"></i> 4 mois</span>
+                                <span><i class="fas fa-tasks"></i> Malwares, forensics</span>
+                            </div>
+                            <div class="certif-contenu">Analyse de malwares, conformité, investigation. Audit gratuit disponible.</div>
+                            <a href="https://www.coursera.org/professional-certificates/ibm-cybersecurity-analyst" target="_blank" class="certif-lien"><i class="fas fa-external-link-alt"></i> Voir le programme</a>
+                        </div>
+                    </div>
+                    <!-- Cisco Networking Academy -->
+                    <div class="certif-card">
+                        <div class="certif-header">
+                            <h3>Cisco Networking Academy</h3>
+                            <span class="certif-badge">Cisco</span>
+                        </div>
+                        <div class="certif-body">
+                            <div class="certif-meta">
+                                <span><i class="far fa-clock"></i> 70h</span>
+                                <span><i class="fas fa-tasks"></i> Réseaux, CCNA intro</span>
+                            </div>
+                            <div class="certif-contenu">Cours d'introduction aux réseaux et à la cybersécurité. Certificat de fin de cours.</div>
+                            <a href="https://www.netacad.com/" target="_blank" class="certif-lien"><i class="fas fa-external-link-alt"></i> NetAcad gratuit</a>
+                        </div>
+                    </div>
+                    <!-- Fortinet NSE 1-3 -->
+                    <div class="certif-card">
+                        <div class="certif-header">
+                            <h3>Fortinet NSE 1-3</h3>
+                            <span class="certif-badge">Fortinet</span>
+                        </div>
+                        <div class="certif-body">
+                            <div class="certif-meta">
+                                <span><i class="far fa-clock"></i> 4h/module</span>
+                                <span><i class="fas fa-tasks"></i> Firewall, VPN</span>
+                            </div>
+                            <div class="certif-contenu">Badges officiels Fortinet. Idéal pour LinkedIn. Totalement gratuit.</div>
+                            <a href="https://training.fortinet.com/" target="_blank" class="certif-lien"><i class="fas fa-external-link-alt"></i> Fortinet Training</a>
+                        </div>
+                    </div>
+                    <!-- Microsoft AZ-900 -->
+                    <div class="certif-card">
+                        <div class="certif-header">
+                            <h3>Microsoft AZ-900</h3>
+                            <span class="certif-badge">Microsoft Learn</span>
+                        </div>
+                        <div class="certif-body">
+                            <div class="certif-meta">
+                                <span><i class="far fa-clock"></i> 1 jour</span>
+                                <span><i class="fas fa-tasks"></i> Cloud, sécurité Azure</span>
+                            </div>
+                            <div class="certif-contenu">Parcours d'apprentissage officiel. L'examen est payant mais les modules sont gratuits.</div>
+                            <a href="https://learn.microsoft.com/fr-fr/training/paths/azure-fundamentals/" target="_blank" class="certif-lien"><i class="fas fa-external-link-alt"></i> Microsoft Learn</a>
+                        </div>
+                    </div>
+                    <!-- Linux Foundation Intro -->
+                    <div class="certif-card">
+                        <div class="certif-header">
+                            <h3>Linux Intro (LFS101x)</h3>
+                            <span class="certif-badge">Linux Foundation/edX</span>
+                        </div>
+                        <div class="certif-body">
+                            <div class="certif-meta">
+                                <span><i class="far fa-clock"></i> 14h</span>
+                                <span><i class="fas fa-tasks"></i> Commandes, bash</span>
+                            </div>
+                            <div class="certif-contenu">Introduction à Linux. Audit gratuit (certificat payant optionnel).</div>
+                            <a href="https://www.edx.org/course/introduction-to-linux" target="_blank" class="certif-lien"><i class="fas fa-external-link-alt"></i> edX Linux</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =============== CERTIFICATIONS LOW-COST (<20€) =============== -->
+                <h2 class="certif-section-title" style="margin-top: 3rem;"><i class="fas fa-coins" style="margin-right: 10px; color: #fbbf24;"></i> Certifications low-cost (examen < 20€)</h2>
+                <div class="certif-grid">
+                    <!-- CompTIA ITF+ -->
+                    <div class="certif-card">
+                        <div class="certif-header" style="background: linear-gradient(135deg,#1e293b,#334155);">
+                            <h3>CompTIA IT Fundamentals</h3>
+                            <span class="certif-badge">CompTIA</span>
+                        </div>
+                        <div class="certif-body">
+                            <div class="certif-meta"><span><i class="fas fa-tag"></i> 15$ promo</span></div>
+                            <div class="certif-contenu">Base IT/réseau pour débutants. Idéal pour poser les fondations.</div>
+                            <a href="#" class="certif-lien">Voir offre (promo)</a>
+                        </div>
+                    </div>
+                    <!-- (ISC)² CC -->
+                    <div class="certif-card">
+                        <div class="certif-header" style="background: linear-gradient(135deg,#1e293b,#334155);">
+                            <h3>(ISC)² Certified in Cybersecurity</h3>
+                            <span class="certif-badge">(ISC)²</span>
+                        </div>
+                        <div class="certif-body">
+                            <div class="certif-meta"><span><i class="fas fa-tag"></i> Gratuit 1 an</span></div>
+                            <div class="certif-contenu">Entrée en cyber reconnue mondialement. Examen gratuit la première année.</div>
+                            <a href="https://www.isc2.org/register/cc" target="_blank" class="certif-lien">S'inscrire</a>
+                        </div>
+                    </div>
+                    <!-- Palo Alto PCCET -->
+                    <div class="certif-card">
+                        <div class="certif-header" style="background: linear-gradient(135deg,#1e293b,#334155);">
+                            <h3>Palo Alto PCCET</h3>
+                            <span class="certif-badge">Palo Alto</span>
+                        </div>
+                        <div class="certif-body">
+                            <div class="certif-meta"><span><i class="fas fa-tag"></i> 15$ promo</span></div>
+                            <div class="certif-contenu">NGFW, sécurité cloud. Formation + examen à prix réduit.</div>
+                            <a href="#" class="certif-lien">PCCET Training</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =============== PLATEFORMES GRATUITES AVEC BADGES =============== -->
+                <h2 class="certif-section-title"><i class="fas fa-award" style="margin-right: 10px; color: #f59e0b;"></i> Plateformes gratuites (badges LinkedIn)</h2>
+                <div style="margin-bottom: 2rem;">
+                    <div class="platform-card">
+                        <div><strong style="color: #dc2626;">🔴 Priorité 1 (1-2 semaines)</strong></div>
+                        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                            <a href="https://training.fortinet.com/" target="_blank">Fortinet NSE 1-3 → Badge immédiat</a>
+                            <a href="https://www.netacad.com/courses/cybersecurity" target="_blank">Cisco CyberOps Intro</a>
+                            <a href="https://www.isc2.org/register/cc" target="_blank">(ISC)² CC</a>
+                        </div>
+                    </div>
+                    <div class="platform-card">
+                        <div><strong style="color: #b45309;">🟡 Priorité 2 (1-3 mois)</strong></div>
+                        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                            <a href="https://www.coursera.org/professional-certificates/google-cybersecurity" target="_blank">Google Cybersecurity (audit)</a>
+                            <a href="https://learn.microsoft.com/fr-fr/training/paths/azure-fundamentals/" target="_blank">Microsoft AZ-900</a>
+                        </div>
+                    </div>
+                    <div class="platform-card">
+                        <div><strong style="color: #059669;">🟢 Bonus Cameroun / local</strong></div>
+                        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                            <a href="https://cyberdefense.orange.com/" target="_blank">Orange Cyberdefense Academy</a>
+                            <span style="color: #334155;">ANSSI Cameroun (formations ponctuelles)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =============== STRATÉGIE LINKEDIN & PLANNING =============== -->
+                    <div class="strategy-box">
+                        <h3 style="margin-top: 0; color: #f97316;"><i class="fab fa-linkedin" style="color: #0077b5;"></i> Stratégie LinkedIn (calendrier recommandé)</h3>
+                        <div class="strategy-timeline">
+                            <div class="timeline-item"><span class="week">Semaine 1 :</span> <span style="color: #1e293b;">Fortinet NSE 1 + Cisco Intro → 2 badges rapides.</span></div>
+                            <div class="timeline-item"><span class="week">Mois 1 :</span> <span style="color: #1e293b;">(ISC)² CC + Google Cyber (audit).</span></div>
+                            <div class="timeline-item"><span class="week">Mois 3 :</span> <span style="color: #1e293b;">Linux Foundation + AZ-900.</span></div>
+                        </div>
+                        <p style="margin: 1.5rem 0 1rem; background: white; padding: 1rem; border-radius: 12px; border-left: 4px solid #0a2472; color: #1e293b; font-weight: 500;">
+                            <i class="fas fa-lightbulb" style="color: #fbbf24;"></i> <strong>Astuce pro :</strong> Ajoutez <em>"En cours : Google Cybersecurity Certificate"</em> sur LinkedIn dès aujourd'hui → les recruteurs adorent.
+                        </p>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <a href="https://www.linkedin.com" target="_blank" class="btn-cyan"><i class="fab fa-linkedin"></i> Mettre à jour LinkedIn</a>
+                            <a href="#ressources" class="btn-cyan" style="background: #1e293b;">Explorer les ressources</a>
+                        </div>
+                    </div>
+
+                <!-- =============== RESSOURCES COMPLÉMENTAIRES =============== -->
+                <h2 class="certif-section-title" id="ressources"><i class="fas fa-toolbox"></i> Ressources gratuites pour pratiquer</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem;">
+                    <a href="https://tryhackme.com" target="_blank" class="resource-link">TryHackMe (labs gratuits)</a>
+                    <a href="https://academy.hackthebox.com" target="_blank" class="resource-link">HackTheBox Academy</a>
+                    <a href="https://cybrary.it" target="_blank" class="resource-link">Cybrary.it</a>
+                    <a href="https://cyberaces.org" target="_blank" class="resource-link">SANS Cyber Aces</a>
+                </div>
+
+                <p class="final-message">
+                    ✅ Ton plan idéal : Fortinet NSE + Cisco + Google Cyber = portfolio béton en 2 mois, <strong>0 FCFA dépensé</strong>, 100% valorisable.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: #0a2472; color: white; padding: 2rem 5%; margin-top: 2rem;">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <p style="opacity: 0.9;">© 2025 RS2-ISTC. Tous droits réservés.</p>
+            <p class="footer-small-note">“Boostez votre carrière avec les certifications gratuites - Promotion RS2”</p>
+            <!-- À coller dans le footer de toutes les pages -->
+                <div class="social-links-footer">
+                <a href="https://chat.whatsapp.com/GpVi9g2GJCmHuYvKGFoVLC" class="whatsapp-float">
+                    <i class="fab fa-whatsapp"></i> Rejoindre le groupe WhatsApp
+                </a>
+                </div>
+        </div>
+    </footer>
+
+    <script src="../js/menu.js"></script>
+</body>
+</html>

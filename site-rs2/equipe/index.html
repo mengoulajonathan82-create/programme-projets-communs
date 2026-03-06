@@ -30,14 +30,68 @@
     object-fit: contain;
     border-radius: 10%;
 }
+
+/* Style pour le bouton de redirection vers certifications */
+.btn-certifications {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #0a2472, #1e3a8a);
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 15px rgba(10, 36, 114, 0.3);
+}
+
+.btn-certifications:hover {
+    background: white;
+    color: #0a2472;
+    border-color: #0a2472;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(10, 36, 114, 0.4);
+}
+
+.btn-certifications i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-certifications:hover i {
+    transform: translateX(5px);
+}
+
+.certif-section {
+    text-align: center;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: linear-gradient(145deg, #f0f4ff, #ffffff);
+    border-radius: 30px;
+    border: 2px dashed var(--accent-cyan);
+}
+
+.certif-section p {
+    font-size: 1.1rem;
+    color: #334155;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
 </style>
 <body>
     <header>
         <nav class="navbar">
             <div class="logo">
                 <a href="../index.html">
-                    <img src="../images/logos/Image_be0rpabe0rpabe0r.png" alt="Logo RS2" onerror="this.style.display='none'">
-                    <span>RS2<span class="highlight">-ISTC</span></span>
+                     <img src="../logos/logos/logo principal.png" alt="Logo RS2" onerror="this.style.display='none'">
+                
                 </a>
             </div>
             <button class="menu-toggle" aria-label="Menu">☰</button>
@@ -67,15 +121,15 @@
                 <!-- Statistiques -->
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center; margin-bottom: 3rem;">
                     <div>
-                        <h2 style="color: var(--accent-cyan);">25+</h2>
+                        <h2 style="color: var(--accent-cyan);">7+</h2>
                         <p>Étudiants</p>
                     </div>
                     <div>
-                        <h2 style="color: var(--accent-cyan);">8</h2>
+                        <h2 style="color: var(--accent-cyan);">3</h2>
                         <p>Filles</p>
                     </div>
                     <div>
-                        <h2 style="color: var(--accent-cyan);">17</h2>
+                        <h2 style="color: var(--accent-cyan);">4</h2>
                         <p>Garçons</p>
                     </div>
                 </div>
@@ -108,12 +162,12 @@
                     <!-- Membre 2 -->
                     <div class="membre-card">
                         <div class="membre-photo">
-                            <i class="fas fa-user-circle"></i>
+                        <img src="../images/equipe/ClementineG.png" alt="Clémentine NGUEDI, Responsable Réseau de la promotion RS2-ISTC">
                         </div>
                         <div class="membre-info">
-                            <h3>Alice M.</h3>
+                            <h3>Clémentine NGUEDI</h3>
                             <div class="membre-role">Responsable Réseau</div>
-                            <p>Spécialiste des protocoles réseau et de la virtualisation.</p>
+                            <p>Chargée des protocoles réseau et de la virtualisation.</p>
                             <div class="membre-social">
                                 <a href="#"><i class="fab fa-linkedin"></i></a>
                                 <a href="#"><i class="fab fa-github"></i></a>
@@ -127,15 +181,19 @@
                     <!-- Membre 3 -->
                     <div class="membre-card">
                         <div class="membre-photo">
-                            <i class="fas fa-user-circle"></i>
+                            <img src="../images/equipe/graceD2.png" alt="Grace Divine SITEU">
                         </div>
                         <div class="membre-info">
-                            <h3>Bob K.</h3>
-                            <div class="membre-role">Expert Sécurité</div>
+                            <h3>Grace Divine SITEU</h3>
+                            <div class="membre-role">Aspirante Sécurité</div>
                             <p>Pentester et analyste en cybersécurité.</p>
                             <div class="membre-social">
                                 <a href="#"><i class="fab fa-linkedin"></i></a>
                                 <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="https://www.instagram.com/grace845907" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-instagram"></i>
+                                    <a href="https://www.facebook.com/share/1HQfAfGqJR/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-facebook"></i>
                                 <a href="mailto:mengoulajonathan82@gmail.com">
                                     <i class="fas fa-envelope"></i>
                                 </a>
@@ -146,10 +204,10 @@
                     <!-- Membre 4 -->
                     <div class="membre-card">
                         <div class="membre-photo">
-                            <i class="fas fa-user-circle"></i>
+                            <img src="../images/equipe/kamgaW.png" alt="Arthur KAMGA, DevOps de la promotion RS2-ISTC">
                         </div>
                         <div class="membre-info">
-                            <h3>Charlie D.</h3>
+                            <h3>Arthur KAMGA</h3>
                             <div class="membre-role">DevOps</div>
                             <p>Automatisation, Docker et CI/CD.</p>
                             <div class="membre-social">
@@ -165,10 +223,10 @@
                     <!-- Membre 5 -->
                     <div class="membre-card">
                         <div class="membre-photo">
-                            <i class="fas fa-user-circle"></i>
+                            <img src="../images/equipe/daoudaN (2).png" alt="Njikou DAOUDA, Administratrice Système de la promotion RS2-ISTC">
                         </div>
                         <div class="membre-info">
-                            <h3>Diana N.</h3>
+                            <h3>Njikou DAOUDA</h3>
                             <div class="membre-role">Administratrice Système</div>
                             <p>Linux, Windows Server et scripting.</p>
                             <div class="membre-social">
@@ -184,10 +242,10 @@
                     <!-- Membre 6 -->
                     <div class="membre-card">
                         <div class="membre-photo">
-                            <i class="fas fa-user-circle"></i>
+                           <img src="../images/equipe/mbeF.png" alt="Séraphin MBE FOSSI, Cloud & Virtualisation de la promotion RS2-ISTC">
                         </div>
                         <div class="membre-info">
-                            <h3>Eva L.</h3>
+                            <h3>Séraphin MBE FOSSI</h3>
                             <div class="membre-role">Cloud & Virtualisation</div>
                             <p>Proxmox, AWS et infrastructures cloud.</p>
                             <div class="membre-social">
@@ -199,6 +257,40 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Membre 3 -->
+                    <div class="membre-card">
+                        <div class="membre-photo">
+                            <img src="../images/equipe/NA'AM.png" alt="NA'A marie Blondelle">
+                        </div>
+                        <div class="membre-info">
+                            <h3>NA'A marie Blondelle</h3>
+                            <div class="membre-role">Aspirante Sécurité</div>
+                            <p>Pentester et analyste en cybersécurité.</p>
+                            <div class="membre-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="https://www.instagram.com/grace845907" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-instagram"></i>
+                                    <a href="https://www.facebook.com/share/1HQfAfGqJR/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-facebook"></i>
+                                <a href="mailto:mengoulajonathan82@gmail.com">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION BOUTON VERS CERTIFICATIONS (AJOUTÉE) -->
+                <div class="certif-section">
+                    <p>
+                        <i class="fas fa-certificate" style="color: var(--accent-cyan); font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
+                        Découvrez notre sélection de <strong>certifications gratuites</strong> pour booster votre CV et développer vos compétences en cybersécurité !
+                    </p>
+                    <a href="certification.html" class="btn-certifications">
+                        <span>Explorer les certifications</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </section>
